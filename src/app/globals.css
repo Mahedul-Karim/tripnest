@@ -52,6 +52,10 @@
   --breakpoint-xs: 400px;
 }
 
+.l-container{
+  @apply max-w-7xl mx-auto w-11/12
+}
+
 :root {
   --radius: 0.625rem;
   --background: #f9fafb;

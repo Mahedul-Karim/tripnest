@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Aladin } from "next/font/google";
 import "./globals.css";
+import ContextProvider from "@/context/Context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,7 +12,7 @@ const inter = Inter({
 
 const aladin = Aladin({
   weight: ["400"],
-  subsets:['latin'],
+  subsets: ["latin"],
   variable: "--font-aladin",
 });
 
@@ -27,8 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${aladin.variable} font-inter showScrollbar`}>
-        {children}
+      <body
+        className={`${inter.variable} ${aladin.variable} font-inter showScrollbar`}
+      >
+        <ContextProvider>{children}</ContextProvider>
       </body>
     </html>
   );
