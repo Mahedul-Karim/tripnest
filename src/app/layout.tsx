@@ -11,6 +11,7 @@ const inter = Inter({
 
 const aladin = Aladin({
   weight: ["400"],
+  subsets:['latin'],
   variable: "--font-aladin",
 });
 
