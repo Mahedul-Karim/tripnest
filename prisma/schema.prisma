@@ -1,0 +1,159 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName String
+  email String @unique
+  image Image?
+  phoneNumber String?
+  bio String?
+  role Role @default(user)
+  status Status @default(available)
+  joinedAt DateTime @default(now())
+  availableBalance Int @default(0)
+  
+
+  writtenReviews Review[]
+  wishlist Wishlist[]
+  bookings Booking[]
+  withdraws Withdraw[]
+  bankInfo BankDetails?
+ 
+}
+
+model Tour{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  tourName String @unique
+  category String
+  location String
+  highlight String[]
+  duration String
+  price Int
+  groupSize Int
+  overview String
+  gallery Image[]
+  itinerarys Itinerary[]
+  includes String[]
+  totalRatings Int @default(0)
+  createdAt DateTime @default(now())
+  status Status @default(pending)
+  creatorId String @db.ObjectId
+
+  reviews Review[]
+  wishlisted Wishlist[]
+  bookings Booking[]
+
+}
+
+model Review{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @db.ObjectId
+
+  tourId String @db.ObjectId
+
+  location Int
+  amenities Int
+  food Int
+  price Int
+  rooms Int
+  tourSupport Int
+  total Int
+  comment String
+  creatorId String @db.ObjectId
+
+  user User @relation(fields: [userId],references: [id],onDelete:Cascade)
+  tour Tour @relation(fields: [tourId],references: [id],onDelete:Cascade)
+
+}
+
+model Wishlist{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @db.ObjectId
+  user User @relation(fields: [userId],references: [id],onDelete:Cascade)
+
+  tourId String @db.ObjectId
+  tour Tour @relation(fields: [tourId],references: [id],onDelete:Cascade)
+
+
+  @@unique([userId,tourId])
+}
+
+model Booking{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @db.ObjectId
+  user User @relation(fields: [userId],references: [id],onDelete:Cascade)
+
+  tourId String @db.ObjectId
+  tour Tour @relation(fields: [tourId],references: [id],onDelete:Cascade)
+
+  status String
+  startDate DateTime
+  endDate DateTime
+  totalPeople Int
+  tourCreator String @db.ObjectId
+  createdAt DateTime @default(now())
+  isReviewd Boolean @default(false)
+
+}
+
+model Withdraw{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @db.ObjectId
+  user User @relation(fields: [userId],references: [id],onDelete:Cascade)
+
+  status String
+  amount Int
+  createdAt DateTime @default(now())
+  accountNumber String
+}
+
+model BankDetails{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  country String
+  swiftCode String
+  bankAcccountNumber String
+  bankHolderName String
+
+  userId String @db.ObjectId @unique
+  user User @relation(fields: [userId],references: [id],onDelete:Cascade)
+}
+
+type Itinerary{
+  title String
+  description String
+}
+
+type Image{
+  public_id String
+  url String
+}
+
+enum Status{
+  completed
+  approved
+  available
+  pending
+  canceled
+  rejected
+  blocked
+}
+
+enum Role{
+  admin
+  user
+  vendor
+  pending
+}
