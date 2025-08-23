@@ -4,10 +4,13 @@ import { useCtx } from "@/context/Context";
 import React, { useEffect, useRef } from "react";
 import Logo from "../common/Logo";
 import { usePathname } from "next/navigation";
+import Nav from "./Nav";
+import NavAction from "./NavAction";
+import MobileNav from "./MobileNav";
+import LinearProgress from "../common/loader/LinearProgress";
 
 const Header = () => {
-
-    const pathname = usePathname();
+  const pathname = usePathname();
 
   const headerRef = useRef<HTMLDivElement | null>(null);
 
@@ -28,13 +31,24 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 h-[70px] z-[2] w-full ${
+    <header
+      className={`fixed top-0 left-0 h-[70px] z-[2] w-full ${
         pathname !== "/" && "bg-white shadow-sm"
-      }`}>
+      }`}
+    >
       <section className="l-container flex items-center justify-between h-full">
         <Logo />
-        <nav>Nav<div>Nav Action</div></nav>
-        
+        <div className="flex items-center gap-8">
+          <div className="hidden md:block">
+            <Nav />
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="hidden md:block">
+              <NavAction />
+            </div>
+            <MobileNav />
+          </div>
+        </div>
       </section>
     </header>
   );

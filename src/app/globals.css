@@ -45,6 +45,7 @@
 
 @theme {
   --color-text: var(--text);
+  --color-navy: var(--navy);
 
   --font-inter: var(--font-inter);
   --font-aladin: var(--font-aladin);
@@ -52,8 +53,8 @@
   --breakpoint-xs: 400px;
 }
 
-.l-container{
-  @apply max-w-7xl mx-auto w-11/12
+.l-container {
+  @apply max-w-7xl mx-auto w-11/12;
 }
 
 :root {
@@ -64,14 +65,15 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #1b4d3e;
-  --primary-foreground: #2f6d59;
-  --secondary: #ff8c42;
+  --primary: #ef7a46;
+  --primary-foreground: #f1ecf2;
+  --secondary: #1b4d3e;
   --secondary-foreground: #ffa866;
   --muted: #666666;
   --text: #1a1a1a;
+  --navy: #05073c;
   --muted-foreground: oklch(0.556 0 0);
-  --accent: #00a6fb;
+  --accent: #00caff;
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e5e5e5;
@@ -176,11 +178,11 @@
 
 .horizontalScrollbar::-webkit-scrollbar-track,
 .showScrollbar::-webkit-scrollbar-track {
-  background-color: rgba(47, 109, 89, 0.377);
+  background-color: var(--primary-foreground);
 }
 .horizontalScrollbar::-webkit-scrollbar-thumb,
 .showScrollbar::-webkit-scrollbar-thumb {
-  background-color: #2f6d59;
+  background-color: var(--primary);
   border-radius: 10px;
 }
 
