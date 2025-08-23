@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import Nav from "./Nav";
 import NavAction from "./NavAction";
 import MobileNav from "./MobileNav";
-import LinearProgress from "../common/loader/LinearProgress";
 
 const Header = () => {
   const pathname = usePathname();
@@ -35,6 +34,7 @@ const Header = () => {
       className={`fixed top-0 left-0 h-[70px] z-[2] w-full ${
         pathname !== "/" && "bg-white shadow-sm"
       }`}
+      ref={headerRef}
     >
       <section className="l-container flex items-center justify-between h-full">
         <Logo />
