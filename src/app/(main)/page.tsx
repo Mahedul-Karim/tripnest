@@ -5,6 +5,7 @@ import Activity from "@/components/home/Activity";
 import FeaturedTours from "@/components/home/FeaturedTours";
 import Hero from "@/components/home/Hero";
 import TrendingDestinations from "@/components/home/TrendingDestinations";
+import WhyUs from "@/components/home/WhyUs";
 import React, { Suspense } from "react";
 
 const Page = () => {
@@ -33,6 +34,7 @@ const Page = () => {
       </section>
       <AboutCompany />
       <TrendingDestinations />
+      <WhyUs />
     </>
   );
 };

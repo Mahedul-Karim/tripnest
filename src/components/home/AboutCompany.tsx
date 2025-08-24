@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import AnimatedButton from "../common/AnimatedButton";
+import CheckItems from "../common/CheckItems";
 
 const AboutCompany = () => {
   return (
@@ -40,30 +41,9 @@ const AboutCompany = () => {
             tourism, or any unique approach you have towards travel.
           </p>
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <p className="size-4 xs:size-6 bg-secondary flex items-center justify-center text-white rounded-full">
-                <Check className="size-4.5" />{" "}
-              </p>
-              <p className="sm:text-base text-xs xs:text-sm text-text">
-                Find Trips That Fit Your Flexible Lifestyle
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <p className="size-4 xs:size-6 bg-secondary flex items-center justify-center text-white rounded-full">
-                <Check className="size-4.5" />{" "}
-              </p>
-              <p className="sm:text-base text-xs xs:text-sm text-text">
-                Expert-Guided Travel with Tourigo
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <p className="size-4 xs:size-6 bg-secondary flex items-center justify-center text-white rounded-full">
-                <Check className="size-4.5" />{" "}
-              </p>
-              <p className="sm:text-base text-xs xs:text-sm text-text">
-                Discover the True Cost of Your Trip
-              </p>
-            </div>
+            <CheckItems>Find Trips That Fit Your Flexible Lifestyle</CheckItems>
+            <CheckItems>Expert-Guided Travel with TripFast</CheckItems>
+            <CheckItems>Discover the True Cost of Your Trip</CheckItems>
           </div>
           <div className="self-start">
             <AnimatedButton href="/about-us">Know More</AnimatedButton>
