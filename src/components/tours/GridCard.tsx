@@ -79,7 +79,7 @@ const GridCard: React.FC<Props> = ({
         <div className="hidden xs:block">
           <Badge
             variant="outline"
-            className="text-muted border-none px-0 font-normal"
+            className="text-muted border-none px-0 font-normal capitalize"
           >
             <MapPin /> {location}
           </Badge>

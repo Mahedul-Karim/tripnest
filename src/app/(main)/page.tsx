@@ -1,5 +1,6 @@
 import CardSkeleton from "@/components/common/loader/CardSkeleton";
 import SectionHeading from "@/components/common/SectionHeading";
+import AboutCompany from "@/components/home/AboutCompany";
 import Activity from "@/components/home/Activity";
 import FeaturedTours from "@/components/home/FeaturedTours";
 import Hero from "@/components/home/Hero";
@@ -29,6 +30,7 @@ const Page = () => {
           <FeaturedTours />
         </Suspense>
       </section>
+      <AboutCompany />
     </>
   );
 };
