@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${aladin.variable} font-inter showScrollbar`}
+        className={`${inter.variable} ${aladin.variable} font-inter showScrollbar bg-background`}
       >
         <ContextProvider>{children}</ContextProvider>
       </body>

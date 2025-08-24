@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const NavAction = () => {
   return (
-    <Button className="md:rounded-full px-6 h-10" asChild>
+    <Button className="md:rounded-full px-6 h-10 font-semibold" asChild>
       <Link href={"/login"}>Sign In</Link>
     </Button>
   );
