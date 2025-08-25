@@ -1,5 +1,6 @@
 "use client";
 
+import QueryProvider from "@/providers/QueryProvider";
 import { Tour } from "@prisma/client";
 import React, {
   createContext,
@@ -49,31 +50,6 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 
   const [token, setToken] = useState<string>(userToken);
 
-//   useEffect(() => {
-//     (async function () {
-//       try {
-//         const res = await fetch("/api/me", {
-//           method: "POST",
-//           credentials: "include",
-//           headers: {
-//             authorization: `Bearer ${userToken}`,
-//           },
-//         });
-
-//         const data = await res.json();
-
-//         if (!data.success) {
-//           throw new Error(data?.message);
-//         }
-
-//         setIsLoggedIn(true);
-//         setUser(data.user);
-//       } catch (err: any) {
-//         console.log(err.message);
-//       }
-//     })();
-//   }, []);
-
   return (
     <Context
       value={{
@@ -87,7 +63,7 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         setTourToEdit,
       }}
     >
-      {children}
+      <QueryProvider>{children}</QueryProvider>
     </Context>
   );
 };

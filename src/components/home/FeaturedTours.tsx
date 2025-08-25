@@ -1,18 +1,41 @@
+"use client";
+
 import React, { Suspense } from "react";
 import Empty from "../common/Empty";
 import GridCard from "../tours/GridCard";
+import CardSkeleton from "../common/loader/CardSkeleton";
+import { useQuery } from "@tanstack/react-query";
 
-const FeaturedTours = async () => {
-  const res = await fetch(`${process.env.SERVER_URL}/api/tours/featured`, {
-    cache: "force-cache",
-    next: {
-      tags: ["featuredTours"],
+const FeaturedTours = () => {
+  const { data, isPending } = useQuery({
+    queryKey: ["featured-tours"],
+    queryFn: async () => {
+      const res = await fetch("/api/tours/featured");
+
+      const data = await res.json();
+
+      return data;
     },
   });
 
-  const data = await res.json();
-
   const tours = data?.tours || [];
+
+  const featuredSuspense = (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 xs:gap-4 mt-6">
+      <CardSkeleton />
+      <CardSkeleton />
+      <CardSkeleton />
+      <CardSkeleton />
+      <CardSkeleton />
+      <CardSkeleton />
+      <CardSkeleton />
+      <CardSkeleton />
+    </div>
+  );
+
+  if (!data || isPending) {
+    return featuredSuspense;
+  }
 
   return (
     <section className="mt-6">

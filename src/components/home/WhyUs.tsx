@@ -39,20 +39,17 @@ const WhyUs = () => {
       <div className="flex flex-col justify-center gap-4">
         <ListItem
           Icon={ShieldCheck}
-          text="Share the core values and principles that drive your tourigo
-                company. Emphasize a commitment to customer."
+          text="Share the core values and principles that drive your tripnest company. Emphasize a commitment to customer."
           heading="Excellent Security"
         />
         <ListItem
           Icon={BadgeDollarSign}
-          text="Share the core values and principles that drive your tourigo
-                company. Emphasize a commitment to customer."
+          text="Share the core values and principles that drive your tripnest company. Emphasize a commitment to customer."
           heading="Cost Efficiency"
         />
         <ListItem
           Icon={Plane}
-          text="Share the core values and principles that drive your tourigo
-                company. Emphasize a commitment to customer."
+          text="Share the core values and principles that drive your tripnest company. Emphasize a commitment to customer."
           heading="World Wide Route"
         />
       </div>
