@@ -180,7 +180,7 @@ export const REVIEWS = [
     userName: "Emma Smith",
     ratings: 5,
     review:
-      "Booking with TripNest was smooth and intuitive. The website made it easy to find tours that fit my schedule. Customer support was helpful and responsive throughout the process.",
+      "Booking with TripNest was smooth and intuitive. Customer support was helpful throughout the process.",
     user_photoURL: "https://randomuser.me/api/portraits/women/21.jpg",
     date: "2025-03-15T10:20:00.000Z",
   },
@@ -190,7 +190,7 @@ export const REVIEWS = [
     userName: "Liam Jones",
     ratings: 4.2,
     review:
-      "The platform offers a good selection of tours with clear descriptions. Booking was quick and straightforward. I discovered a few hidden gems thanks to their recommendations.",
+      "The platform offers a good selection of tours with clear descriptions. Booking was straightforward.",
     user_photoURL: "https://randomuser.me/api/portraits/men/34.jpg",
     date: "2025-04-02T09:15:00.000Z",
   },
@@ -200,7 +200,7 @@ export const REVIEWS = [
     userName: "Olivia Brown",
     ratings: 4.8,
     review:
-      "TripNest made planning my trip much easier. The curated recommendations were very helpful. Support staff answered all my questions quickly and politely.",
+      "TripNest made planning my trip much easier. The curated recommendations were very helpful.",
     user_photoURL: "https://randomuser.me/api/portraits/women/45.jpg",
     date: "2025-05-10T16:45:00.000Z",
   },
@@ -210,7 +210,7 @@ export const REVIEWS = [
     userName: "Noah Davis",
     ratings: 4,
     review:
-      "The website is user-friendly and booking was seamless. Tour details were clear and easy to follow. The mobile version could use slight improvements.",
+      "The website is user-friendly and booking was seamless. Tour details were clear and easy to follow.",
     user_photoURL: "https://randomuser.me/api/portraits/men/56.jpg",
     date: "2025-05-18T13:00:00.000Z",
   },
@@ -220,7 +220,7 @@ export const REVIEWS = [
     userName: "Ava Martin",
     ratings: 5,
     review:
-      "Excellent platform with a wide variety of tours. The booking process was simple and transparent. Customer support gave great tips for local attractions.",
+      "Excellent platform with a wide variety of tours. Customer support gave great tips for local attractions.",
     user_photoURL: "https://randomuser.me/api/portraits/women/32.jpg",
     date: "2025-06-05T11:30:00.000Z",
   },
@@ -230,7 +230,7 @@ export const REVIEWS = [
     userName: "Elijah Wilson",
     ratings: 3.8,
     review:
-      "TripNest is a solid platform with useful tour information. Some pages loaded slowly and a few itineraries lacked details. Overall, a good experience.",
+      "TripNest is a solid platform with useful tour information. Overall, a good experience.",
     user_photoURL: "https://randomuser.me/api/portraits/men/67.jpg",
     date: "2025-06-12T15:20:00.000Z",
   },
@@ -240,7 +240,7 @@ export const REVIEWS = [
     userName: "Sophia Moore",
     ratings: 4.7,
     review:
-      "I loved the curated tours and smooth booking experience. The interface is modern and easy to navigate. Customer support was prompt and helpful.",
+      "I loved the curated tours and smooth booking experience. The interface is modern and easy to navigate.",
     user_photoURL: "https://randomuser.me/api/portraits/women/28.jpg",
     date: "2025-07-01T14:50:00.000Z",
   },
@@ -250,7 +250,7 @@ export const REVIEWS = [
     userName: "Mason Taylor",
     ratings: 4.3,
     review:
-      "TripNest made planning my trip easier with clear tour details. Booking was fast and confirmation was instant. Support handled a small issue efficiently.",
+      "TripNest made planning my trip easier with clear tour details. Booking was fast and confirmation was instant.",
     user_photoURL: "https://randomuser.me/api/portraits/men/41.jpg",
     date: "2025-07-20T12:10:00.000Z",
   },

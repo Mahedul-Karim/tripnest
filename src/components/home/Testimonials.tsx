@@ -66,7 +66,7 @@ const Testimonials = () => {
               {REVIEWS.map((rev, index) => (
                 <CarouselItem
                   key={index}
-                  className={`sm:basis-1/2 md:basis-1/3  pb-10 pl-4 sm:pl-0`}
+                  className={`sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pb-10 pl-4 sm:pl-0`}
                 >
                   <div
                     className={`px-2 ${getClass(
@@ -76,7 +76,7 @@ const Testimonials = () => {
                     <Card
                       className="border-border shadow-none bg-white py-4"
                     >
-                      <CardContent className="flex p-6 flex-col gap-4">
+                      <CardContent className="flex px-4 flex-col gap-4">
                         <p className="font-medium text-muted italic">
                           &quot;{rev.review}&quot;
                         </p>
