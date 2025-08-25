@@ -235,3 +235,21 @@ input[type="number"]::-webkit-inner-spin-button {
     right: -8%;
   }
 }
+
+.checkbox-icon {
+  transform: scale(0);
+  transition: all 0.2s ease;
+}
+
+.check-path {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  transition: stroke-dashoffset 0.3s ease 0.1s;
+}
+
+.shad-btn[data-state="checked"] .checkbox-icon {
+  transform: scale(1);
+}
+.shad-btn[data-state="checked"] .check-path {
+  stroke-dashoffset: 0;
+}
