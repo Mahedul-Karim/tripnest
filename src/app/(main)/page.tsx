@@ -4,6 +4,7 @@ import AboutCompany from "@/components/home/AboutCompany";
 import Activity from "@/components/home/Activity";
 import FeaturedTours from "@/components/home/FeaturedTours";
 import Hero from "@/components/home/Hero";
+import Testimonials from "@/components/home/Testimonials";
 import TrendingDestinations from "@/components/home/TrendingDestinations";
 import WhyUs from "@/components/home/WhyUs";
 import React from "react";
@@ -20,6 +21,7 @@ const Page = () => {
       <AboutCompany />
       <TrendingDestinations />
       <WhyUs />
+      <Testimonials />
     </>
   );
 };
