@@ -3,9 +3,10 @@
 import useSearchQuery from "@/hooks/useSearchQuery";
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
+import CheckMark from "./CheckMark";
 
 interface Props {
-  title: String;
+  title: string;
   filters?: {
     [key: string]: string;
   }[];
@@ -40,8 +41,22 @@ const CheckFilter: React.FC<Props> = ({
   };
 
   return (
-    <div>
-      <h2>{title}</h2>
+    <div className="py-4">
+      <h2 className="font-medium text-navy">{title}</h2>
+      <div className="mt-4 flex flex-col gap-3">
+        {isPrice
+          ? ""
+          : filters?.map((filt, i) => (
+              <CheckMark
+                key={i}
+                label={filt.label}
+                value={filt.value}
+                index={i}
+                onChange={handleSearchQuery}
+                checked={query == filt.value}
+              />
+            ))}
+      </div>
     </div>
   );
 };
