@@ -32,7 +32,7 @@ const CheckMark: React.FC<Props> = ({
         className={`cursor-pointer size-4.5 [&>svg]:size-4 rounded-full border-text/40 data-[state=checked]:bg-transparent data-[state=checked]:border-primary [&>svg]:stroke-primary`}
       />
       <Label htmlFor={`${value}-${index}`} className="font-normal text-text cursor-pointer">
-        {!isRating ? label : <Ratings rating={Number(value)} />}
+        {!isRating ? label : <Ratings rating={Number(value)} size="size-4.5" />}
       </Label>
     </div>
   );
