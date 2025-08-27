@@ -10,7 +10,7 @@ export const api = async ({
   options = {},
 }: {
   endpoint: string;
-  options: RequestInit;
+  options?: RequestInit;
 }) => {
   try {
     const res = await fetch(`/api/${endpoint}`, options);

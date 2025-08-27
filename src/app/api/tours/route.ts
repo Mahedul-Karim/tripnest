@@ -5,11 +5,12 @@ export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = req.nextUrl;
 
-    const type = searchParams.get("type");
-    const duration = searchParams.get("duration");
-    const price = searchParams.get("price");
-    const rating = searchParams.get("rating");
-    const search = searchParams.get("search");
+    const type = searchParams.get("type") || "";
+    const duration = searchParams.get("duration") || "";
+    const price = searchParams.get("price") || "";
+    const rating = searchParams.get("rating") || "";
+    const search = searchParams.get("search") || "";
+
 
     const query: any = {
       status: "approved",
@@ -98,6 +99,7 @@ export const GET = async (req: NextRequest) => {
 
     return NextResponse.json({ success: true, tours });
   } catch (error: any) {
+    console.log(error)
     return NextResponse.json({
       success: false,
       message: error.message,
