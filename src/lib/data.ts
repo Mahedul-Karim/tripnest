@@ -255,3 +255,37 @@ export const REVIEWS = [
     date: "2025-07-20T12:10:00.000Z",
   },
 ];
+
+
+export const FAQS = [
+  {
+    question: "What services does TripNest provide?",
+    answer:
+      "We specialize in curated travel experiences, including guided tours, customized itineraries, hotel bookings, flight arrangements, and complete holiday packages tailored to your needs.",
+  },
+  {
+    question: "Can I customize my trip?",
+    answer:
+      "Absolutely! We offer fully personalized travel plans where you can choose destinations, activities, accommodations, and travel pace according to your preferences.",
+  },
+  {
+    question: "Do you offer international tours?",
+    answer:
+      "Yes, we provide both domestic and international travel packages, covering popular destinations worldwide along with offbeat experiences for adventurous travelers.",
+  },
+  {
+    question: "How do I book a trip with TripNest?",
+    answer:
+      "You can book directly through our website or get in touch with our travel experts via phone or email. We’ll guide you through the process and ensure a smooth booking experience.",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer:
+      "We accept all major credit and debit cards, bank transfers, and secure online payment gateways. Flexible installment options are also available for certain packages.",
+  },
+  {
+    question: "What if I need to cancel or reschedule my trip?",
+    answer:
+      "We understand plans can change. Our cancellation and rescheduling policies vary depending on the package and service providers. Please check the specific terms when booking or contact our support team for assistance.",
+  },
+];

@@ -72,25 +72,25 @@ const Page = () => {
           src="/assets/ticket.svg"
           title="Ultimate flexibility"
           desc="You're in control, with free cancellation and payment options to satisfy any plan or budget."
-          className="border border-border p-4 rounded-md"
+          className="bg-white p-4 rounded-md"
         />
         <Card
           src="/assets/hot-air-balloon.svg"
           title="Memorable experiences"
           desc="Browse and book tours and activities so incredible, you'll want to tell your friends."
-          className="border border-border p-4 rounded-md"
+          className="bg-white p-4 rounded-md"
         />
         <Card
           src="/assets/diamond.svg"
           title="Quality at our core"
           desc="High-quality standards. Millions of reviews. A tourz company."
-          className="border border-border p-4 rounded-md"
+          className="bg-white p-4 rounded-md"
         />
         <Card
           src="/assets/medal.svg"
           title="Award-winning support"
           desc="New price? New plan? No problem. We're here to help, 24/7."
-          className="border border-border p-4 rounded-md"
+          className="bg-white p-4 rounded-md"
         />
       </section>
       <section className="py-20 bg-[url('/assets/aboutbg.webp')] bg-no-repeat bg-cover rounded-lg mt-8 px-2 xs:px-5 sm:px-20">
