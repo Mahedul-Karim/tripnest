@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Empty from "@/components/common/Empty";
 import { api } from "@/lib/utils";
 import GridCard from "../GridCard";
+import ListCard from "../ListCard";
 
 const Main = () => {
   const [type, setType] = useState("grid");
@@ -60,8 +61,26 @@ const Main = () => {
         {data?.tours?.length > 0 &&
           (type === "grid" ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 xs:gap-4 sm:gap-6">
-              {data?.tours?.map((tour: AllToursType) => (
-                <GridCard
+              <Suspense fallback={<></>}>
+                {data?.tours?.map((tour: AllToursType) => (
+                  <GridCard
+                    key={tour?.id}
+                    id={tour?.id}
+                    tourName={tour?.tourName}
+                    location={tour?.location}
+                    totalRatings={tour?.totalRatings}
+                    duration={tour?.duration}
+                    price={tour?.price}
+                    gallery={tour?.gallery}
+                    totalReviews={tour?.reviews?.length}
+                  />
+                ))}
+              </Suspense>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {data?.tours?.map((tour:AllToursType) => (
+                <ListCard
                   key={tour?.id}
                   id={tour?.id}
                   tourName={tour?.tourName}
@@ -70,12 +89,10 @@ const Main = () => {
                   duration={tour?.duration}
                   price={tour?.price}
                   gallery={tour?.gallery}
-                  totalReviews={tour?.reviews?.length}
+                  overview={tour?.overview}
                 />
               ))}
             </div>
-          ) : (
-            <></>
           ))}
       </div>
     </>
