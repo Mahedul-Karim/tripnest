@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Aladin } from "next/font/google";
 import "./globals.css";
 import ContextProvider from "@/context/Context";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,7 +32,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${aladin.variable} font-inter showScrollbar bg-background`}
       >
-        <ContextProvider>{children}</ContextProvider>
+        <ContextProvider>
+          {children}
+          <Toaster richColors position="top-right" />
+        </ContextProvider>
       </body>
     </html>
   );

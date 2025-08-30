@@ -1,5 +1,6 @@
 "use client";
 
+import AuthProvider from "@/providers/AuthProvider";
 import QueryProvider from "@/providers/QueryProvider";
 import { Tour } from "@prisma/client";
 import React, {
@@ -7,7 +8,6 @@ import React, {
   Dispatch,
   SetStateAction,
   useContext,
-  useEffect,
   useState,
 } from "react";
 
@@ -63,7 +63,9 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         setTourToEdit,
       }}
     >
-      <QueryProvider>{children}</QueryProvider>
+      <QueryProvider>
+        <AuthProvider>{children}</AuthProvider>
+      </QueryProvider>
     </Context>
   );
 };
