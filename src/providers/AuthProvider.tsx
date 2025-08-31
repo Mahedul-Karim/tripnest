@@ -15,6 +15,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         options: {
           method: "POST",
           body: JSON.stringify({ email, token }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
       }),
     onSuccess: (data) => {

@@ -30,12 +30,18 @@ import {
   browserSessionPersistence,
   setPersistence,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth, googleProvider } from "@/lib/firebase";
 import { toast } from "sonner";
+import { api } from "@/lib/utils";
+import { useCtx } from "@/context/Context";
+import LinearProgress from "../common/loader/LinearProgress";
 
 const LoginForm = () => {
   const router = useRouter();
+
+  const { setIsLoggedIn, setUser, setToken } = useCtx();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -66,7 +72,7 @@ const LoginForm = () => {
       router.push("/");
     },
     onError: (err: any) => {
-      if (err.code ===  "auth/wrong-password") {
+      if (err.code === "auth/wrong-password") {
         return toast.error("Invalid credential");
       }
       toast.error(err.message);
@@ -78,8 +84,55 @@ const LoginForm = () => {
     mutate({ email, password });
   }
 
+  const { mutate: googleMutate, isPending: isLoading } = useMutation({
+    mutationFn: async () => {
+      await setPersistence(auth, browserSessionPersistence);
+      const { user } = await signInWithPopup(auth, googleProvider);
+
+      const email = user?.providerData?.[0]?.email;
+      const displayName = user.providerData[0].displayName;
+
+      const firstName = displayName?.at(0);
+      const lastName = displayName?.at(-1);
+
+      const token = await user.getIdToken(true);
+
+      const options = {
+        method: "POST",
+        body: JSON.stringify({
+          email,
+          firstName,
+          lastName,
+          token,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const data = await api({ endpoint: "google", options });
+
+      return data;
+    },
+    onSuccess: (data) => {
+      setUser(data.user);
+      setToken(data.token);
+      setIsLoggedIn(true);
+      toast.success("Logged in successfully!");
+      router.push("/");
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  const googleSignIn = () => {
+    googleMutate();
+  };
+
   return (
     <Card className="max-w-[380px] w-full shadow-none border-none gap-4">
+      {isLoading && <LinearProgress />}
       <CardHeader>
         <CardTitle className="text-2xl text-navy text-center font-semibold">
           Log In
@@ -152,6 +205,7 @@ const LoginForm = () => {
         <Button
           variant={"outline"}
           className="w-full hover:bg-transparent bg-transparent  text-muted hover:text-muted gap-2 rounded-xl border-border"
+          onClick={googleSignIn}
         >
           {" "}
           <Image
