@@ -14,11 +14,14 @@ import Logo from "../common/Logo";
 import { NAV_DATA } from "@/lib/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCtx } from "@/context/Context";
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false);
 
   const pathname = usePathname();
+
+  const { user } = useCtx();
 
   return (
     <div className="block md:hidden">
@@ -59,9 +62,11 @@ const MobileNav = () => {
             </ul>
           </nav>
           <SheetFooter className="border-t border-border pt-2">
-            <SheetClose asChild>
-              <NavAction />
-            </SheetClose>
+            {!user && (
+              <SheetClose asChild>
+                <NavAction />
+              </SheetClose>
+            )}
           </SheetFooter>
         </SheetContent>
       </Sheet>

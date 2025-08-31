@@ -7,13 +7,14 @@ import { usePathname } from "next/navigation";
 import Nav from "./Nav";
 import NavAction from "./NavAction";
 import MobileNav from "./MobileNav";
+import UserAvatar from "../common/UserAvatar";
 
 const Header = () => {
   const pathname = usePathname();
 
   const headerRef = useRef<HTMLDivElement | null>(null);
 
-  const { user, isLoggedIn } = useCtx();
+  const { user } = useCtx();
 
   useEffect(() => {
     const stickyHeader = () => {
@@ -42,11 +43,14 @@ const Header = () => {
           <div className="hidden md:block">
             <Nav />
           </div>
-          <div className="flex items-center gap-2">
-            <div className="hidden md:block">
-              <NavAction />
-            </div>
+          <div className="flex items-center gap-4">
+            {!user && (
+              <div className="hidden md:block">
+                <NavAction />
+              </div>
+            )}
             <MobileNav />
+            {user && <UserAvatar />}
           </div>
         </div>
       </section>
