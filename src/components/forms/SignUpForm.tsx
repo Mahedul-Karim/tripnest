@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -22,129 +21,142 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import FloatingInput from "./inputs/FloatingInput";
 import { useRouter } from "next/navigation";
-import { loginSchema } from "./formSchemas";
-import Image from "next/image";
+import { signUpSchema } from "./formSchemas";
 import { useMutation } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
 import {
   browserSessionPersistence,
+  createUserWithEmailAndPassword,
   setPersistence,
   signInWithEmailAndPassword,
-  signInWithPopup,
 } from "firebase/auth";
-import { auth, googleProvider } from "@/lib/firebase";
+import { auth } from "@/lib/firebase";
 import { toast } from "sonner";
 import { api } from "@/lib/utils";
-import { useCtx } from "@/context/Context";
-import LinearProgress from "../common/loader/LinearProgress";
 import Link from "next/link";
+import { register } from "@/lib/actions/user";
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const router = useRouter();
 
-  const { setIsLoggedIn, setUser, setToken } = useCtx();
-
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<z.infer<typeof signUpSchema>>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
-      email: "test@gmail.com(admin)/test2@gmail.com",
-      password: "test1234",
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      confirmPassword: "",
     },
   });
 
   const {
     formState: { errors },
     getValues,
+    reset,
   } = form;
 
   const { mutate, isPending } = useMutation({
     mutationFn: async ({
       email,
       password,
+      firstName,
+      lastName,
     }: {
       email: string;
       password: string;
+      firstName: string;
+      lastName: string;
     }) => {
-      await setPersistence(auth, browserSessionPersistence);
-      await signInWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
+
+      const data = await register({
+        firstName,
+        lastName,
+        email,
+      });
+
+      if (!data?.success) {
+        throw new Error(data?.error);
+      }
     },
     onSuccess: () => {
-      toast.success("Successfully logged in");
+      reset({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+      toast.success("Account created successfully");
       router.push("/");
     },
     onError: (err: any) => {
-      if (err.code === "auth/wrong-password") {
-        return toast.error("Invalid credential");
+      if (err.code === "auth/email-already-in-use") {
+        return toast.error("Email already exists");
       }
       toast.error(err.message);
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
-    const { email, password } = values;
-    mutate({ email, password });
+  function onSubmit(values: z.infer<typeof signUpSchema>) {
+    const { firstName, lastName, email, password } = values;
+    mutate({ email, password, firstName, lastName });
   }
-
-  const { mutate: googleMutate, isPending: isLoading } = useMutation({
-    mutationFn: async () => {
-      await setPersistence(auth, browserSessionPersistence);
-      const { user } = await signInWithPopup(auth, googleProvider);
-
-      const email = user?.providerData?.[0]?.email;
-      const displayName = user.providerData[0].displayName;
-
-      const firstName = displayName?.at(0);
-      const lastName = displayName?.at(-1);
-
-      const token = await user.getIdToken(true);
-
-      const options = {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-          firstName,
-          lastName,
-          token,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const data = await api({ endpoint: "google", options });
-
-      return data;
-    },
-    onSuccess: (data) => {
-      setUser(data.user);
-      setToken(data.token);
-      setIsLoggedIn(true);
-      toast.success("Logged in successfully!");
-      router.push("/");
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
-  });
-
-  const googleSignIn = () => {
-    googleMutate();
-  };
 
   return (
     <Card className="max-w-[380px] w-full shadow-none border-none gap-3">
-      {isLoading && <LinearProgress />}
       <CardHeader className="mb-2">
         <CardTitle className="text-2xl text-navy text-center font-semibold">
-          Log In
+          Register
         </CardTitle>
         <CardDescription className="text-center">
-          We&apos;re glad to see you again!
+          Let&apos;s create your account!
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <FloatingInput
+                      labelBg="bg-white"
+                      label={"First Name"}
+                      text={getValues("firstName")}
+                      error={errors?.firstName?.message || ""}
+                      disabled={isPending}
+                      type="text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <FloatingInput
+                      labelBg="bg-white"
+                      label={"Last Name"}
+                      text={getValues("lastName")}
+                      error={errors?.lastName?.message || ""}
+                      type="text"
+                      disabled={isPending}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="email"
@@ -153,11 +165,11 @@ const LoginForm = () => {
                   <FormControl>
                     <FloatingInput
                       labelBg="bg-white"
-                      label={"Email Address"}
+                      label={"Email"}
                       text={getValues("email")}
                       error={errors?.email?.message || ""}
-                      disabled={isPending}
                       type="email"
+                      disabled={isPending}
                       {...field}
                     />
                   </FormControl>
@@ -185,6 +197,26 @@ const LoginForm = () => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <FloatingInput
+                      labelBg="bg-white"
+                      label={"Confirm Password"}
+                      text={getValues("confirmPassword")}
+                      error={errors?.confirmPassword?.message || ""}
+                      type="password"
+                      disabled={isPending}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button
               type="submit"
               className="w-full rounded-xl h-10"
@@ -201,32 +233,8 @@ const LoginForm = () => {
           </p>
         </Form>
       </CardContent>
-      <CardFooter className="block">
-        <div className="grid grid-cols-[1fr_20px_1fr] mb-4 gap-4 place-items-center">
-          <div className="border-t border-solid border-border w-full" />
-          <p className="flex items-center justify-center uppercase text-xs text-muted">
-            OR
-          </p>
-          <div className="border-t border-solid border-border w-full" />
-        </div>
-        <Button
-          variant={"outline"}
-          className="w-full hover:bg-transparent bg-transparent  text-muted hover:text-muted gap-2 rounded-xl border-border"
-          onClick={googleSignIn}
-        >
-          {" "}
-          <Image
-            src="/assets/google.svg"
-            alt=""
-            width={20}
-            height={20}
-            className="grayscale"
-          />{" "}
-          Continue with Google
-        </Button>
-      </CardFooter>
     </Card>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

@@ -19,7 +19,7 @@ const FloatingInput: React.FC<Props> = forwardRef(
         <Input
           ref={ref as any}
           {...props}
-          className={`peer focus:border-text rounded-xl ${
+          className={`peer focus:border-navy rounded-xl ${
             error ? "border-red-500" : "border-zinc-200"
           } h-[45px] bg-white`}
           type={type}
@@ -30,7 +30,7 @@ const FloatingInput: React.FC<Props> = forwardRef(
             labelBg ? labelBg : "bg-white"
           } peer-focus:-top-[13px] transition-all duration-300 left-[15px] font-normal absolute py-[5px] px-[7px] peer-focus:text-xs text-sm ${
             text ? "-top-[13px] text-xs" : "top-[7px]"
-          } ${disabled ? "text-muted" : "text-text"} ${error ? 'text-red-500' : 'text-text'} `}
+          } ${disabled ? "text-muted" : "text-navy"} ${error ? 'text-red-500' : 'text-navy'} pointer-events-none`}
         >
           {label}
         </Label>

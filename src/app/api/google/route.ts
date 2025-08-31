@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/db";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 export const POST = async (req: NextRequest) => {
   try {
