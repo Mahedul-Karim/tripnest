@@ -20,7 +20,7 @@ const FloatingTextarea: React.FC<Props> = forwardRef(
           {...props}
           className={`peer focus:border-navy rounded-xl ${
             error ? "border-red-500" : "border-zinc-200"
-          } h-[80px] bg-white`}
+          } h-[120px] bg-white`}
           disabled={disabled}
         />
         <Label

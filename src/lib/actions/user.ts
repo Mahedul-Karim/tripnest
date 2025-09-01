@@ -83,7 +83,6 @@ export const uploadUserImage = async (
   }
 };
 
-
 export const requestForVendor = async (email: string) => {
   try {
     const user = await prisma.user.update({
@@ -92,6 +91,67 @@ export const requestForVendor = async (email: string) => {
       },
       data: {
         role: "vendor",
+      },
+    });
+
+    return {
+      success: true,
+      user,
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      message: err.message,
+    };
+  }
+};
+
+interface UserInfo {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phoneNumber?: string;
+  bio?: string;
+}
+
+export const updateUserDetails = async (details: UserInfo) => {
+  const { firstName, lastName, email, phoneNumber, bio } = details;
+
+  try {
+    const user = await prisma.user.update({
+      where: {
+        email,
+      },
+      data: {
+        firstName,
+        lastName,
+        phoneNumber,
+        bio,
+      },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        image: {
+          select: {
+            url: true,
+            public_id: true,
+          },
+        },
+        phoneNumber: true,
+        bio: true,
+        role: true,
+        wishlist: {
+          select: {
+            tourId: true,
+          },
+        },
+        writtenReviews: {
+          select: {
+            tourId: true,
+          },
+        },
       },
     });
 

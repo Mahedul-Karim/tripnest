@@ -51,7 +51,7 @@ const UserNav = () => {
 
   return (
     <>
-      <div className="md:mb-6 md:pl-4 w-full">
+      <div className="md:mb-6 w-full">
         <nav className="flex flex-row justify-around w-full md:flex-col gap-1 md:mt-2">
           {navData.map((nav, i) => {
             if (nav.href === "/admin" && user?.role === "admin") {
