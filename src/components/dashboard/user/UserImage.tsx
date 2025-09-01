@@ -38,8 +38,8 @@ const UserImage: React.FC<Props> = ({ className }) => {
     mutationFn: async () => {
       const data = await uploadUserImage(
         image as string,
-        user?.email!,
-        user?.image?.public_id!
+        user!.email,
+        user?.image?.public_id
       );
 
       if (!data.success) {

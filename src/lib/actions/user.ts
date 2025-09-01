@@ -33,7 +33,7 @@ export const register = async (data: any) => {
 export const uploadUserImage = async (
   image: string,
   email: string,
-  public_id: string
+  public_id: string | undefined
 ) => {
   try {
     configCloudinary();
