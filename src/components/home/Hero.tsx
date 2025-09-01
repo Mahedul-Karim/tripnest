@@ -11,7 +11,7 @@ const Hero = () => {
           <p className="text-sm text-muted">
             One site, 300,000+ experiences you&apos;ll remember
           </p>
-          <h1 className="text-4xl xs:text-5xl lg:text-6xl text-dark font-bold !leading-[1.2] text-left relative z-[1]">
+          <h1 className="text-4xl xs:text-5xl lg:text-6xl text-navy font-bold !leading-[1.2] text-left relative z-[1]">
             Your
             <br className="hidden sm:inline-block" /> Adventure
             <br className="hidden sm:inline-block" /> Travel Experts

@@ -226,9 +226,9 @@ const SignUpForm = () => {
             </Button>
           </form>
           <p className="text-muted text-sm mt-2">
-            Don&apos;t have an account?{" "}
-            <Link href="/sign-up" className="text-primary">
-              Sign Up!
+            Already have an account?{" "}
+            <Link href="/login" className="text-primary">
+              Login!
             </Link>
           </p>
         </Form>

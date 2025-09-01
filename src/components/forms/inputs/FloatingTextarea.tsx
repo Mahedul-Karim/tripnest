@@ -1,0 +1,44 @@
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import React, { forwardRef } from "react";
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
+
+interface Props {
+  label: string;
+  text?: string;
+  error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
+  labelBg?: string;
+  disabled?: boolean;
+}
+
+const FloatingTextarea: React.FC<Props> = forwardRef(
+  ({ label, text, error, labelBg, disabled, ...props }, ref) => {
+    return (
+      <div className="relative">
+        <Textarea
+          ref={ref as any}
+          {...props}
+          className={`peer focus:border-navy rounded-xl ${
+            error ? "border-red-500" : "border-zinc-200"
+          } h-[80px] bg-white`}
+          disabled={disabled}
+        />
+        <Label
+          className={`${
+            labelBg ? labelBg : "bg-white"
+          } peer-focus:-top-[13px] transition-all duration-300 left-[15px] font-normal absolute py-[5px] px-[7px] peer-focus:text-xs text-sm ${
+            text ? "-top-[13px] text-xs" : "top-[7px]"
+          } ${disabled ? "text-muted" : "text-navy"} ${
+            error ? "text-red-500" : "text-navy"
+          } pointer-events-none`}
+        >
+          {label}
+        </Label>
+      </div>
+    );
+  }
+);
+
+FloatingTextarea.displayName = "FloatingTextarea";
+
+export default FloatingTextarea;

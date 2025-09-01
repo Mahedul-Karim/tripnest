@@ -8,6 +8,7 @@ type User = {
   role: string;
   image?: {
     url: string;
+    public_id:string;
   };
   wishlist: Array<any>;
   writtenReviews: Array<any>;

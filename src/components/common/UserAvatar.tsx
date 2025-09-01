@@ -41,7 +41,7 @@ const UserAvatar = () => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem asChild className="gap-1 text-muted cursor-pointer">
+        <DropdownMenuItem asChild className="gap-1 cursor-pointer">
           <Link href={"/user"}>
             <LayoutDashboard /> Dashboard
           </Link>

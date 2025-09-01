@@ -20,6 +20,7 @@ export const POST = async (req: NextRequest) => {
         image: {
           select: {
             url: true,
+            public_id:true
           },
         },
         phoneNumber: true,
