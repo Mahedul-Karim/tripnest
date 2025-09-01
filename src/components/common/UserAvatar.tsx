@@ -36,7 +36,7 @@ const UserAvatar = () => {
         <Avatar className="size-10 cursor-pointer">
           <AvatarImage src={user?.image?.url} />
           <AvatarFallback>
-            {user?.firstName?.[0]! + user?.lastName?.[0]!}
+            {(user?.firstName?.[0] ?? "") + (user?.lastName?.[0] ?? "") || "?"}
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
