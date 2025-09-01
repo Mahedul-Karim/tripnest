@@ -82,3 +82,27 @@ export const uploadUserImage = async (
     };
   }
 };
+
+
+export const requestForVendor = async (email: string) => {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        email,
+      },
+      data: {
+        role: "vendor",
+      },
+    });
+
+    return {
+      success: true,
+      user,
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      message: err.message,
+    };
+  }
+};

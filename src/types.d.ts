@@ -5,7 +5,7 @@ type User = {
   email: string;
   phoneNumber?: string | null;
   bio?: string | null;
-  role: string;
+  role: "admin" | "vendor" | "user" | "pending";
   image?: {
     url: string;
     public_id:string;

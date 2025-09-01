@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect } from "react";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const { setIsLoggedIn, setUser, setToken } = useCtx();
+  const { setIsLoggedIn, setUser, setToken, setIsLoading } = useCtx();
 
   const { mutate } = useMutation({
     mutationFn: ({ email, token }: { email: any; token: any }) =>
@@ -21,13 +21,20 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         },
       }),
     onSuccess: (data) => {
-      if (!data.user) return;
+      if (!data.user) {
+        setIsLoading(false);
+        return;
+      }
 
       setUser(data.user);
       setToken(data.token);
       setIsLoggedIn(true);
+      setIsLoading(false);
     },
-    onError: (err) => console.log(err),
+    onError: (err) => {
+      setIsLoading(false);
+      console.log(err);
+    },
   });
 
   useEffect(() => {

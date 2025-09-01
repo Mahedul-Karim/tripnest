@@ -2,6 +2,7 @@ import React from "react";
 import UserImage from "./UserImage";
 import UserInfo from "./UserInfo";
 import UserNav from "./UserNav";
+import VendorButton from "./VendorButton";
 
 const Sidebar = () => {
   return (
@@ -11,6 +12,7 @@ const Sidebar = () => {
         <UserInfo />
         <UserNav />
       </div>
+      <VendorButton className="hidden md:block" />
     </aside>
   );
 };

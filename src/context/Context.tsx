@@ -20,6 +20,8 @@ interface ContextType {
   setUser: Dispatch<SetStateAction<User | null | undefined>>;
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
   token: string;
   setToken: Dispatch<SetStateAction<string>>;
   tourToEdit: Tour | null;
@@ -35,12 +37,15 @@ const Context = createContext<ContextType>({
   setToken: () => {},
   tourToEdit: null,
   setTourToEdit: () => {},
+  isLoading: true,
+  setIsLoading: () => {},
 });
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User | null | undefined>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [tourToEdit, setTourToEdit] = useState<Tour | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const userToken =
     typeof window !== "undefined" &&
@@ -61,6 +66,8 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         setToken,
         tourToEdit,
         setTourToEdit,
+        isLoading,
+        setIsLoading,
       }}
     >
       <QueryProvider>
