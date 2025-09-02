@@ -57,6 +57,7 @@ const VendorButton: React.FC<Props> = ({ className }) => {
         className={`w-full text-xs sm:text-sm sm:px-4 px-2 md:py-2 py-1 font-semibold`}
         onClick={handleOnClick}
         disabled={isPending}
+        variant={"secondary"}
       >
         {user?.role === "user" && "Become a vendor"}
 
