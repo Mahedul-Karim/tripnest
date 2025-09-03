@@ -17,6 +17,7 @@ import Link from "next/link";
 import HighlightText from "../common/HighlightText";
 import Ratings from "../common/Ratings";
 import { formatCurrency } from "@/lib/utils";
+import { useWishlist } from "@/hooks/useWishlist";
 
 type Props = {
   id: string;
@@ -44,6 +45,8 @@ const GridCard: React.FC<Props> = ({
 }) => {
   const search = useSearchParams().get("search") || "";
 
+  const addToWishlist = useWishlist();
+
   const { user, isLoggedIn, setUser } = useCtx();
 
   const isInWishlist = user?.wishlist?.find((tour) => tour.tourId === id);
@@ -64,6 +67,9 @@ const GridCard: React.FC<Props> = ({
           <Button
             className="bg-foreground rounded-full border border-border hover:bg-foreground cursor-pointer size-7 xs:size-9"
             size={"icon"}
+            onClick={() =>
+              addToWishlist({ user, isLoggedIn, setUser, tourId: id })
+            }
           >
             <Heart
               className={`${
@@ -103,9 +109,7 @@ const GridCard: React.FC<Props> = ({
       <CardFooter className="px-[8px] xs:px-[10px] sm:px-5 items-center xs:justify-between justify-end">
         <div className="hidden xs:flex items-center gap-1 text-navy">
           <Clock className="size-4 sm:size-4.5" />
-          <span className="text-center text-[12px]">
-            {duration}
-          </span>
+          <span className="text-center text-[12px]">{duration}</span>
         </div>
         <div className="flex items-center text-navy">
           <span className="text-[10px] sm:text-xs">From</span>

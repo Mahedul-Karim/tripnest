@@ -166,3 +166,61 @@ export const updateUserDetails = async (details: UserInfo) => {
     };
   }
 };
+
+export const addTourToWishlist = async ({
+  userId,
+  tourId,
+}: {
+  userId: string;
+  tourId: string;
+}) => {
+  try {
+    await prisma.wishlist.create({
+      data: {
+        userId,
+        tourId,
+      },
+    });
+
+    return {
+      success: true,
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      message: err.message,
+    };
+  }
+};
+
+export const removeFromWishlist = async ({
+  userId,
+  tourId,
+}: {
+  userId: string;
+  tourId: string;
+}) => {
+  try {
+    const wishlist = await prisma.wishlist.findFirst({
+      where: {
+        userId: userId,
+        tourId: tourId,
+      },
+    });
+
+    await prisma.wishlist.delete({
+      where: {
+        id: wishlist?.id,
+      },
+    });
+
+    return {
+      success: true,
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      message: err.message,
+    };
+  }
+};

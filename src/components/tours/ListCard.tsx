@@ -20,6 +20,7 @@ import Link from "next/link";
 import HighlightText from "../common/HighlightText";
 import Ratings from "../common/Ratings";
 import { formatCurrency } from "@/lib/utils";
+import { useWishlist } from "@/hooks/useWishlist";
 
 type Props = {
   id: string;
@@ -46,6 +47,8 @@ const ListCard: React.FC<Props> = ({
 }) => {
   const search = useSearchParams().get("search") || "";
 
+  const addToWishlist = useWishlist();
+
   const { user, isLoggedIn, setUser } = useCtx();
 
   const isInWishlist = user?.wishlist?.find((tour) => tour.tourId === id);
@@ -65,6 +68,9 @@ const ListCard: React.FC<Props> = ({
             <Button
               className="bg-foreground rounded-full border border-border hover:bg-foreground cursor-pointer size-7 xs:size-9"
               size={"icon"}
+              onClick={() =>
+                addToWishlist({ user, isLoggedIn, setUser, tourId: id })
+              }
             >
               <Heart
                 className={`${
