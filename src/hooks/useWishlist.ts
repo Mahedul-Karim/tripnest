@@ -1,8 +1,10 @@
 import { addTourToWishlist, removeFromWishlist } from "@/lib/actions/user";
-import React from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export const useWishlist = () => {
+  const queryClient = useQueryClient();
+
   const handleAddWishlist = async ({
     user,
     isLoggedIn,
@@ -24,26 +26,36 @@ export const useWishlist = () => {
         );
 
         copiedUser.wishlist = [...filteredWishlist];
+
         setUser(copiedUser);
-        toast.success("Tour was removed wishlist!");
+
+        toast.success("Tour was removed from wishlist!");
+
         const res = await removeFromWishlist({ userId: user.id, tourId });
 
         if (!res.success) {
           throw new Error(res.message);
         }
+
+        queryClient.invalidateQueries({ queryKey: ["userWishlist"] });
       } else {
         const wishlist = [...user?.wishlist];
 
         wishlist.push({ tourId });
 
         copiedUser.wishlist = [...wishlist];
+
         setUser(copiedUser);
+
         toast.success("Tour was added to wishlist!");
+
         const res = await addTourToWishlist({ userId: user.id, tourId });
 
         if (!res.success) {
           throw new Error(res.message);
         }
+
+        queryClient.invalidateQueries({ queryKey: ["userWishlist"] });
       }
     } catch (err: any) {
       setUser(user);
