@@ -133,7 +133,7 @@ const LoginForm = () => {
 
   return (
     <Card className="max-w-[380px] w-full shadow-none border-none gap-3">
-      {isLoading && <LinearProgress />}
+      {(isLoading || isPending) && <LinearProgress />}
       <CardHeader className="mb-2">
         <CardTitle className="text-2xl text-navy text-center font-semibold">
           Log In
@@ -190,7 +190,7 @@ const LoginForm = () => {
               className="w-full rounded-xl h-10"
               disabled={isPending}
             >
-              {isPending && <Loader className="animate-spin" />} Submit
+              Submit
             </Button>
           </form>
           <p className="text-muted text-sm mt-2">

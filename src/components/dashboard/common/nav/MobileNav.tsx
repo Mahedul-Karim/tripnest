@@ -10,7 +10,6 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 import Hamburger from "@/components/common/nav/Hamburger";
 
@@ -24,9 +23,7 @@ const MobileNav: React.FC<Props> = ({ isAdmin }) => {
   return (
     <div className="md:hidden block">
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger asChild>
           <Hamburger open={open} setOpen={setOpen} />
-        </SheetTrigger>
         <SheetContent
           side="right"
           className="bg-white border-border"

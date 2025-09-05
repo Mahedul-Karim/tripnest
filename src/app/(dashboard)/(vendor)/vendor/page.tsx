@@ -1,9 +1,12 @@
-import React from 'react'
+import VendorHome from "@/components/dashboard/vendor/home/VendorHome";
+import React from "react";
 
 const Page = () => {
   return (
-    <div>Page</div>
-  )
-}
+    <>
+      <VendorHome />
+    </>
+  );
+};
 
-export default Page
+export default Page;
