@@ -80,13 +80,13 @@ export const GET = async (
 
       const chartObject = {
         month: month[i],
-        joined: Math.round(Math.random() * 300),
+        booked: Math.round(Math.random() * 300),
       };
 
       const visitorObject = {
         month: month[i],
-        newCustomers: Math.round(Math.random() * 214),
-        existingCustomers: Math.round(Math.random() * 214),
+        visited: Math.round(Math.random() * 214),
+        wishlist: Math.round(Math.random() * 214),
       };
       chartData.push(chartObject);
       visitorsData.push(visitorObject);

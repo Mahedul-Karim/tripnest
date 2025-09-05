@@ -33,7 +33,7 @@ const BookingChart: React.FC<Props> = ({
     <div>
       <SectionHeading>{title}</SectionHeading>
       <div className="mt-6">
-        <ChartContainer config={chartConfig} className="min-h-[250px] w-full">
+        <ChartContainer config={chartConfig}>
           <AreaChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} strokeDasharray={"3 3"} />
             <XAxis

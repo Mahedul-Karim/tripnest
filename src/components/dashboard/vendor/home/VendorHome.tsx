@@ -8,6 +8,29 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import StatsCard from "./StatsCard";
 import { ChartColumnBig, Heart, ScrollText, Wallet } from "lucide-react";
+import { ChartConfig } from "@/components/ui/chart";
+import SectionHeading from "../../common/SectionHeading";
+import VisitorsBar from "../../common/charts/VisitorsBar";
+import BookingPie from "../../common/charts/BookingPie";
+import BookingChart from "../../common/charts/BookingChart";
+
+const chartConfig = {
+  booked: {
+    label: "Booked",
+    color: "var(--primary)",
+  },
+} satisfies ChartConfig;
+
+const chartVisitorConfig = {
+  visited: {
+    label: "Visited",
+    color: "var(--primary)",
+  },
+  wishlist: {
+    label: "Wishlist",
+    color: "var(--chart-2)",
+  },
+} satisfies ChartConfig;
 
 const VendorHome = () => {
   const { user } = useCtx();
@@ -33,6 +56,7 @@ const VendorHome = () => {
     );
   }
 
+
   return (
     <>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -55,6 +79,28 @@ const VendorHome = () => {
           Icon={ChartColumnBig}
           label="Visitors"
           value={Math.round(Math.random() * 500)}
+        />
+      </div>
+      <div className="grid md:grid-cols-2 gap-4 mt-6">
+        <div className="bg-white rounded-md border border-solid border-border p-4">
+          <BookingChart
+            chartData={data?.chartData}
+            chartConfig={chartConfig}
+            dataKey="booked"
+            title="Booking Stats"
+          />
+        </div>
+        <div className="bg-white rounded-md border border-solid border-border p-4">
+          <BookingPie />
+        </div>
+      </div>
+      <div className="mt-6 p-4 bg-white rounded-md border border-solid border-border">
+        <SectionHeading>Viewed</SectionHeading>
+        <VisitorsBar
+          dataKey1="visited"
+          datakey2="wishlist"
+          chartData={data?.visitorsData}
+          chartConfig={chartVisitorConfig}
         />
       </div>
     </>

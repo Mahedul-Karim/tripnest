@@ -31,7 +31,7 @@ const VisitorsBar: React.FC<Props> = ({
 }) => {
   return (
     <div className="mt-6">
-      <ChartContainer config={chartConfig}>
+      <ChartContainer config={chartConfig} className="h-[250px] w-full" >
         <BarChart accessibilityLayer data={chartData}>
           <CartesianGrid vertical={false} />
           <XAxis

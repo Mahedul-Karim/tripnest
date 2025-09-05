@@ -6,7 +6,7 @@ interface Props {
 }
 
 const SectionHeading: React.FC<Props> = ({ children,className }) => {
-  return <h2 className={`text-lg xs:text-xl text-dark-1 font-semibold ${className}`}>{children}</h2>;
+  return <h2 className={`text-lg xs:text-xl text-navy font-semibold ${className}`}>{children}</h2>;
 };
 
 export default SectionHeading;

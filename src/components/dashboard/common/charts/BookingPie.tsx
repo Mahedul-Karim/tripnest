@@ -37,11 +37,11 @@ const chartConfig = {
   },
   tour2: {
     label: "tour2",
-    color: "hsl(var(--chart-2))",
+    color: "var(--chart-2)",
   },
   tour3: {
     label: "tour3",
-    color: "hsl(var(--chart-3))",
+    color: "var(--chart-3)",
   },
 } satisfies ChartConfig;
 
