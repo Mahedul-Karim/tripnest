@@ -5,17 +5,12 @@ import Empty from "../common/Empty";
 import GridCard from "../tours/GridCard";
 import CardSkeleton from "../common/loader/CardSkeleton";
 import { useQuery } from "@tanstack/react-query";
+import { api } from "@/lib/utils";
 
 const FeaturedTours = () => {
-  const { data, isPending } = useQuery({
+  const { data, isPending, error } = useQuery({
     queryKey: ["featured-tours"],
-    queryFn: async () => {
-      const res = await fetch("/api/tours/featured");
-
-      const data = await res.json();
-
-      return data;
-    },
+    queryFn: () => api({ endpoint: "tours/featured" }),
   });
 
   const tours = data?.tours || [];
@@ -35,6 +30,14 @@ const FeaturedTours = () => {
 
   if (!data || isPending) {
     return featuredSuspense;
+  }
+
+  if (error) {
+    return (
+      <div className="mt-6">
+        <Empty text={error.message} />
+      </div>
+    );
   }
 
   return (

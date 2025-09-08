@@ -12,8 +12,15 @@ export const api = async ({
   endpoint: string;
   options?: RequestInit;
 }) => {
+  const controller = new AbortController();
+
+  // const cancleRequest = setTimeout(() => controller.abort(), 30000);
+
   try {
-    const res = await fetch(`/api/${endpoint}`, options);
+    const res = await fetch(`/api/${endpoint}`, {
+      ...options,
+      signal: controller.signal,
+    });
 
     const data = await res.json();
 
@@ -23,10 +30,16 @@ export const api = async ({
 
     return data;
   } catch (err: any) {
+    if (err.name === "AbortError") {
+      throw new Error(
+        "Request timed out! Check your network connection and try again"
+      );
+    }
+
     throw new Error(
       err instanceof Error ? err.message : "An unknown error occured"
     );
-  }
+  } 
 };
 
 export const formatCurrency = (number: number) => {

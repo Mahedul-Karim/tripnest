@@ -13,6 +13,7 @@ import SectionHeading from "../../common/SectionHeading";
 import VisitorsBar from "../../common/charts/VisitorsBar";
 import BookingPie from "../../common/charts/BookingPie";
 import BookingChart from "../../common/charts/BookingChart";
+import AllBookings from "../bookings/AllBookings";
 
 const chartConfig = {
   booked: {
@@ -56,7 +57,6 @@ const VendorHome = () => {
     );
   }
 
-
   return (
     <>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -82,7 +82,7 @@ const VendorHome = () => {
         />
       </div>
       <div className="grid md:grid-cols-2 gap-4 mt-6">
-        <div className="bg-white rounded-md border border-solid border-border p-4">
+        <div className="bg-white rounded-md border border-solid border-border p-4 min-w-0 overflow-hidden">
           <BookingChart
             chartData={data?.chartData}
             chartConfig={chartConfig}
@@ -90,7 +90,7 @@ const VendorHome = () => {
             title="Booking Stats"
           />
         </div>
-        <div className="bg-white rounded-md border border-solid border-border p-4">
+        <div className="bg-white rounded-md border border-solid border-border p-4 min-w-0 overflow-hidden">
           <BookingPie />
         </div>
       </div>
@@ -102,6 +102,12 @@ const VendorHome = () => {
           chartData={data?.visitorsData}
           chartConfig={chartVisitorConfig}
         />
+      </div>
+      <div className="mt-6 p-4 bg-white rounded-md border border-solid border-border">
+        <SectionHeading>Recent Bookings</SectionHeading>
+        <div className="mt-6">
+          <AllBookings />
+        </div>
       </div>
     </>
   );

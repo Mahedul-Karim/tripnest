@@ -6,12 +6,12 @@ import React from "react";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ProtectedRoute routeFor={["vendor", "admin"]}>
-      <div className="grid md:grid-cols-[230px_1fr] lg:grid-cols-[270px_1fr] overflow-clip h-screen">
+      <div className="grid md:grid-cols-[230px_1fr] lg:grid-cols-[270px_1fr] overflow-hidden h-screen">
         <VendorNav className="hidden md:block" />
-        <div>
+        <div className="min-w-0 flex flex-col">
           <Header />
-          <div className="showScrollbar overflow-auto h-[calc(100vh_-_72px)]">
-            <div className="l-container py-8">{children}</div>
+          <div className="showScrollbar overflow-y-auto overflow-x-hidden h-[calc(100vh_-_72px)]">
+            <div className="l-container py-8 max-w-full">{children}</div>
           </div>
         </div>
       </div>
