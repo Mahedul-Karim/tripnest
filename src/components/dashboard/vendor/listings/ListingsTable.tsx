@@ -1,10 +1,12 @@
 import { Tour } from "@prisma/client";
-import React from "react";
+import React, { useState } from "react";
 
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -17,23 +19,33 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import {  formatCurrency, formatDate } from "@/lib/utils";
+import { formatCurrency, formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { STATUS } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useCtx } from "@/context/Context";
-import { Pencil } from "lucide-react";
+import { ArrowUpDown, Pencil } from "lucide-react";
 
 const ListingsTable = ({ tours }: { tours: Tour[] }) => {
   const router = useRouter();
   const { setTourToEdit } = useCtx();
 
+  const [sorting, setSorting] = useState<SortingState>([]);
+
   const columns: ColumnDef<Tour>[] = [
     {
       id: "tour",
       accessorFn: (row) => row.tourName,
-      header: () => <div>Name</div>,
+      header: ({ column }) => (
+        <Button
+          variant={"ghost"}
+          className="font-semibold"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name <ArrowUpDown />
+        </Button>
+      ),
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
           <div className="shrink-0">
@@ -49,25 +61,41 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
             {row?.original?.tourName}
           </p>
         </div>
-      )
+      ),
     },
     {
       accessorKey: "price",
-      header: () => <div>Price</div>,
+      header: ({ column }) => (
+        <Button
+          variant={"ghost"}
+          className="font-semibold"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Price <ArrowUpDown />
+        </Button>
+      ),
       cell: ({ row }) => (
         <p className="text-[13px] text-dark-1 font-semibold">
           {formatCurrency(row?.original?.price)}
         </p>
-      )
+      ),
     },
     {
       accessorKey: "createdAt",
-      header: () => <div>Created At</div>,
+      header: ({column}) => (
+        <Button
+          variant={"ghost"}
+          className="font-semibold"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Created At <ArrowUpDown />
+        </Button>
+      ),
       cell: ({ row }) => (
         <p className="text-[13px] text-dark-1 font-semibold">
           {formatDate(new Date(row?.original?.createdAt))}
         </p>
-      )
+      ),
     },
     {
       accessorKey: "status",
@@ -82,7 +110,7 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
         >
           {row?.original?.status}
         </Badge>
-      )
+      ),
     },
     {
       id: "action",
@@ -109,6 +137,11 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
     data: tours,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
+    },
   });
 
   return (
