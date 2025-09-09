@@ -31,7 +31,7 @@ const AllBookings = () => {
   return (
     <section>
       {data?.bookings?.length === 0 ? (
-        <Empty />
+        <Empty text="No bookings found" />
       ) : (
         <BookingsTable bookings={data?.bookings} />
       )}
