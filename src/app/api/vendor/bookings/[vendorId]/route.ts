@@ -27,10 +27,10 @@ export const GET = async (
     });
 
     if (bookings.length === 0 || !bookings) {
-      return {
+      return NextResponse.json({
         success: true,
         bookings: [],
-      };
+      });
     }
 
     return NextResponse.json({

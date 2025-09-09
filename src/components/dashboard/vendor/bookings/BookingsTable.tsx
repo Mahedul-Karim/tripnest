@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -20,7 +22,7 @@ import { formatCurrency, formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { STATUS } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { EllipsisVertical } from "lucide-react";
+import { ArrowDown, EllipsisVertical } from "lucide-react";
 
 interface VendorBookings {
   tour: {
@@ -43,6 +45,8 @@ interface VendorBookings {
 }
 
 const BookingsTable = ({ bookings }: { bookings: VendorBookings[] }) => {
+  const [sorting, setSorting] = useState<SortingState>([]);
+
   const columns: ColumnDef<VendorBookings>[] = [
     {
       accessorKey: "id",
@@ -73,19 +77,40 @@ const BookingsTable = ({ bookings }: { bookings: VendorBookings[] }) => {
     },
     {
       accessorKey: "startDate",
-      header: "Start Date",
+      header: ({ column }) => (
+        <div
+          className="cursor-pointer flex items-center gap-1"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Start Date <ArrowDown className="size-4" />
+        </div>
+      ),
       cell: ({ row }) => (
         <p>{formatDate(new Date(row?.original?.startDate))}</p>
       ),
     },
     {
       accessorKey: "endDate",
-      header: "End Date",
+      header: ({ column }) => (
+        <div
+          className="cursor-pointer flex items-center gap-1"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          End Date <ArrowDown className="size-4" />
+        </div>
+      ),
       cell: ({ row }) => <p>{formatDate(new Date(row?.original?.endDate))}</p>,
     },
     {
       accessorKey: "tour.price",
-      header: "Price",
+      header: ({ column }) => (
+        <div
+          className="cursor-pointer flex items-center gap-1"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Price <ArrowDown className="size-4" />
+        </div>
+      ),
       cell: ({ row }) => (
         <div>{formatCurrency(row?.original?.tour?.price)}</div>
       ),
@@ -118,7 +143,7 @@ const BookingsTable = ({ bookings }: { bookings: VendorBookings[] }) => {
         return (
           <>
             {status !== "completed" && (
-              <Button size="icon" variant="ghost" className="hover:bg-muted/20" >
+              <Button size="icon" variant="ghost" className="hover:bg-muted/20">
                 <EllipsisVertical className="size-5" />
               </Button>
             )}
@@ -132,6 +157,11 @@ const BookingsTable = ({ bookings }: { bookings: VendorBookings[] }) => {
     data: bookings,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
+    state: {
+      sorting,
+    },
   });
 
   return (
