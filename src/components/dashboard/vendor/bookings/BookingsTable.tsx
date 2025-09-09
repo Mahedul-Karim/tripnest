@@ -17,12 +17,25 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Image from "next/image";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { STATUS } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, EllipsisVertical } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+import LinearProgress from "@/components/common/loader/LinearProgress";
+import { updateBookingStatus } from "@/lib/actions/vendor";
 
 interface VendorBookings {
   tour: {
@@ -46,6 +59,10 @@ interface VendorBookings {
 
 const BookingsTable = ({ bookings }: { bookings: VendorBookings[] }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [open, setOpen] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState<VendorBookings | null>(
+    null
+  );
 
   const columns: ColumnDef<VendorBookings>[] = [
     {
@@ -143,7 +160,15 @@ const BookingsTable = ({ bookings }: { bookings: VendorBookings[] }) => {
         return (
           <>
             {status !== "completed" && (
-              <Button size="icon" variant="ghost" className="hover:bg-muted/20">
+              <Button
+                size="icon"
+                variant="ghost"
+                className="hover:bg-muted/20"
+                onClick={() => {
+                  setSelectedBooking(row?.original);
+                  setOpen(true);
+                }}
+              >
                 <EllipsisVertical className="size-5" />
               </Button>
             )}
@@ -164,51 +189,109 @@ const BookingsTable = ({ bookings }: { bookings: VendorBookings[] }) => {
     },
   });
 
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async () => {
+      const state =
+        selectedBooking?.status === "paid" ? "checked in" : "completed";
+
+      const updatedData = await updateBookingStatus(selectedBooking!.id, state);
+
+      if (!updatedData.success) {
+        throw new Error(updatedData.message);
+      }
+    },
+    onSuccess: () => {
+      queryClient.refetchQueries({ queryKey: ["vendorBookings"] });
+      setOpen(false);
+      setSelectedBooking(null);
+      toast.success("Booking updated successfully!");
+    },
+    onError: (err: Error) => {
+      setOpen(false);
+      setSelectedBooking(null);
+      toast.error(err.message);
+    },
+  });
+
   return (
-    <div className="overflow-x-auto rounded-md border border-border text-sm text-navy">
-      <Table className="min-w-[880px]">
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+    <>
+      {isPending && <LinearProgress />}
+      <div className="overflow-x-auto rounded-md border border-border text-sm text-navy">
+        <Table className="min-w-[880px]">
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  );
+                })}
               </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    </div>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+              Do you want to update the status of this booking to{" "}
+              {selectedBooking?.status === "paid" ? "checked in" : "completed"}.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant={"outline"}
+              onClick={() => setOpen(false)}
+              disabled={isPending}
+            >
+              Close
+            </Button>
+            <Button disabled={isPending} onClick={() => mutate()}>
+              Continue
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
