@@ -45,10 +45,10 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Name <ArrowUpDown />
+          Name <ArrowUpDown  />
         </Button>
       ),
       cell: ({ row }) => (
@@ -73,7 +73,7 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Price <ArrowUpDown />
@@ -90,7 +90,7 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Created At <ArrowUpDown />
