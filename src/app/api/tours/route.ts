@@ -1,3 +1,4 @@
+import { configCloudinary, uploadToCloudinary } from "@/lib/cloudinary";
 import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,7 +11,6 @@ export const GET = async (req: NextRequest) => {
     const price = searchParams.get("price") || "";
     const rating = searchParams.get("rating") || "";
     const search = searchParams.get("search") || "";
-
 
     const query: any = {
       status: "approved",
@@ -99,10 +99,91 @@ export const GET = async (req: NextRequest) => {
 
     return NextResponse.json({ success: true, tours });
   } catch (error: any) {
-    console.log(error)
+    console.log(error);
     return NextResponse.json({
       success: false,
       message: error.message,
     });
+  }
+};
+
+export const POST = async (req: NextRequest) => {
+  try {
+    configCloudinary();
+
+    const values = await req.json();
+
+    const gallery: {
+      public_id: string;
+      url: string;
+    }[] = [];
+
+    if (values.gallery.length > 0) {
+      await Promise.all(
+        values.gallery.map(async (img: string) => {
+          const result = await uploadToCloudinary(img);
+
+          gallery.push({
+            public_id: result.public_id,
+            url: result.url,
+          });
+        })
+      );
+    }
+
+    await prisma.tour.create({
+      data: { ...values, gallery },
+    });
+
+    return NextResponse.json(
+      {
+        success: true,
+      },
+      {
+        status: 201,
+      }
+    );
+  } catch (err: any) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Something went wrong! Please try again later",
+      },
+      {
+        status: 501,
+      }
+    );
+  }
+};
+
+export const PATCH = async (req: NextRequest) => {
+  try {
+    const { id, gallery, ...tourData } = await req.json();
+
+    await prisma.tour.update({
+      where: {
+        id,
+      },
+      data: { ...tourData },
+    });
+
+    return NextResponse.json(
+      {
+        success: true,
+      },
+      {
+        status: 201,
+      }
+    );
+  } catch (err: any) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Something went wrong! Please try again later",
+      },
+      {
+        status: 501,
+      }
+    );
   }
 };

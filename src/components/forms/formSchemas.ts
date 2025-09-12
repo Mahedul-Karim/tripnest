@@ -45,33 +45,19 @@ const signUpSchema = z
   });
 
 const createTourSchema = z.object({
-  tourName: z.string({
-    error: "Tour Name is required!",
-  }),
-  category: z.string({
-    error: "Category is required!",
-  }),
-  location: z.string({
-    error: "Location is required!",
-  }),
+  tourName: z.string().min(1, "Tour Name is required!"),
+  category: z.string().min(1, "Category is required!"),
+  location: z.string().min(1, "Location is required!"),
   highlight: z
     .string({
       error: "Highlights is required",
     })
     .array()
     .min(1, "Atleast 1 highlight is required"),
-  duration: z.string({
-    error: "Duration is required!",
-  }),
-  price: z.string({
-    error: "Price is required!",
-  }),
-  groupSize: z.string({
-    error: "Group Size is required!",
-  }),
-  overview: z.string({
-    error: "Overview is required!",
-  }),
+  duration: z.string().min(1, "Duration is required!"),
+  price: z.string().min(1, "Price is required!"),
+  groupSize: z.string().min(1, "Group Size is required!"),
+  overview: z.string().min(1, "Overview is required!"),
   gallery: z
     .string({
       error: "Gallery is required",
@@ -93,7 +79,8 @@ const createTourSchema = z.object({
         error: "Itinerarys are required!",
       }
     )
-    .array(),
+    .array()
+    .min(1, "Atleast one itinerary is required"),
   includes: z
     .string({
       error: "Includes is required!",

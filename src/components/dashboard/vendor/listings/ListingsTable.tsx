@@ -31,7 +31,12 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
   const router = useRouter();
   const { setTourToEdit } = useCtx();
 
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: "createdAt",
+      desc: true,
+    },
+  ]);
 
   const columns: ColumnDef<Tour>[] = [
     {
@@ -82,7 +87,7 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
     },
     {
       accessorKey: "createdAt",
-      header: ({column}) => (
+      header: ({ column }) => (
         <Button
           variant={"ghost"}
           className="font-semibold"
