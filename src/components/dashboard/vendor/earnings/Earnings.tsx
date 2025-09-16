@@ -8,6 +8,7 @@ import React from "react";
 import StatsCard from "../home/StatsCard";
 import { ChartPie, HandCoins, Landmark, Wallet } from "lucide-react";
 import WithdrawButtons from "./WithdrawButtons";
+import SalesChart from "./SalesChart";
 
 const Earnings = () => {
   const { user } = useCtx();
@@ -57,6 +58,9 @@ const Earnings = () => {
           label="Withdraw Pending"
           value={formatCurrency(data?.data?.withdrawPending || 0)}
         />
+      </div>
+      <div className="bg-white rounded-md border border-solid border-border p-4 mt-6">
+        <SalesChart chartData={chartData} />
       </div>
     </>
   );
