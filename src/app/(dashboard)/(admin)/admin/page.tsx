@@ -1,9 +1,8 @@
-import React from 'react'
+import AdminHome from "@/components/dashboard/admin/home/AdminHome";
+import React from "react";
 
 const Page = () => {
-  return (
-    <div>Page</div>
-  )
-}
+  return <AdminHome />;
+};
 
-export default Page
+export default Page;
