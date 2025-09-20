@@ -131,10 +131,13 @@ const adminAllBookings = async () => {
     });
 
     return {
+      success: true,
       bookings: bookedTours,
     };
   } catch (err: any) {
     return {
+      success: false,
+      message: "Something went wrong while fetching bookings",
       bookings: [],
     };
   }

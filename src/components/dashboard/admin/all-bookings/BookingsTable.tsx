@@ -1,5 +1,5 @@
+import { Prisma } from "@prisma/client";
 import React, { useState } from "react";
-
 import {
   ColumnDef,
   flexRender,
@@ -17,104 +17,104 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { STATUS } from "@/lib/data";
+import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown, CircleCheckBig, EllipsisVertical, X } from "lucide-react";
-import { updateTourStatus } from "@/lib/actions/tour";
-import { Status } from "@prisma/client";
-import { toast } from "sonner";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import LinearProgress from "@/components/common/loader/LinearProgress";
 
-type Props = {
-  id: string;
-  tourName: string;
-  price: number;
-  status: string;
-  gallery: {
-    url: string;
-  }[];
-  creatorId: string;
-  createdAt: Date;
-  creator?: {
-    firstName: string;
-    lastName: string;
+type Props = Prisma.BookingGetPayload<{
+  include: {
+    tour: {
+      select: {
+        tourName: true;
+        gallery: true;
+        price: true;
+      };
+    };
   };
-};
+}>;
 
-const ListingsTable = ({ data }: { data: Props[] }) => {
+const BookingsTable = ({ data }: { data: Props[] }) => {
   const [sorting, setSorting] = useState<SortingState>([
     {
-      id: "createdAt",
+      id: "startDate",
       desc: true,
     },
   ]);
 
-  const queryClient = useQueryClient();
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: async ({ status, id }: { status: Status; id: string }) => {
-      const res = await updateTourStatus(status, id);
-
-      if (!res.success) {
-        throw new Error(res.message);
-      }
-
-      return res;
-    },
-    onSuccess: (data) => {
-      queryClient.refetchQueries({
-        queryKey: ["adminAllTours"],
-      });
-      toast.success(data.message);
-    },
-    onError: (err: Error) => toast.error(err.message),
-  });
-
-  const handleStatusUpdate = async (status: Status, id: string) => {
-    mutate({ status, id });
-  };
-
   const columns: ColumnDef<Props>[] = [
     {
+      accessorKey: "id",
+      header: "Id",
+      cell: ({ row }) => <p>{row?.original?.id?.slice(0, 8)}</p>,
+    },
+    {
       id: "tour",
-      accessorFn: (row) => row.tourName,
+      accessorFn: (row) => row.tour.tourName,
       header: ({ column }) => (
         <Button
           variant={"ghost"}
           className="font-semibold hover:bg-transparent has-[>svg]:px-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Name <ArrowUpDown />
+          Tour <ArrowUpDown />
         </Button>
       ),
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
-          <div className="shrink-0 w-20 relative aspect-[16/12]">
+          <div className="shrink-0 w-[50px] relative aspect-square">
             <Image
-              src={row?.original?.gallery?.[0]?.url}
+              src={row?.original?.tour?.gallery?.[0]?.url}
               alt=""
               fill
               className="object-cover rounded-md w-full h-full"
             />
           </div>
-          <p className="text-[14px] text-navy line-clamp-2 font-semibold whitespace-pre-wrap max-w-[330px] shrink-0">
-            {row?.original?.tourName}
+          <p className="text-[14px] text-navy line-clamp-2 font-semibold whitespace-pre-wrap max-w-[270px] shrink-0">
+            {row?.original?.tour?.tourName}
           </p>
         </div>
       ),
     },
     {
-      accessorKey: "price",
+      accessorKey: "startDate",
+      header: ({ column }) => (
+        <Button
+          variant={"ghost"}
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Start Date <ArrowUpDown />
+        </Button>
+      ),
+      cell: ({ row }) => (
+        <p className="text-[13px] text-dark-1 font-semibold">
+          {formatDate(new Date(row?.original?.startDate))}
+        </p>
+      ),
+    },
+    {
+      accessorKey: "endDate",
+      header: ({ column }) => (
+        <Button
+          variant={"ghost"}
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          End Date <ArrowUpDown />
+        </Button>
+      ),
+      cell: ({ row }) => (
+        <p className="text-[13px] text-dark-1 font-semibold">
+          {formatDate(new Date(row?.original?.endDate))}
+        </p>
+      ),
+    },
+    {
+      id: "price",
+      accessorFn: (row) => row.tour.price,
       header: ({ column }) => (
         <Button
           variant={"ghost"}
@@ -124,41 +124,18 @@ const ListingsTable = ({ data }: { data: Props[] }) => {
           Price <ArrowUpDown />
         </Button>
       ),
-      cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
-          {formatCurrency(row?.original?.price)}
-        </p>
-      ),
-    },
-    {
-      accessorKey: "createdAt",
-      header: ({ column }) => (
-        <Button
-          variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Created At <ArrowUpDown />
-        </Button>
-      ),
-      cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
-          {formatDate(new Date(row?.original?.createdAt))}
-        </p>
-      ),
-    },
-    {
-      accessorKey: "creator",
-      header: "Creator",
       cell: ({ row }) => {
-        const creator = row?.original?.creator;
-
         return (
-          <p className="text-[13px] text-navy font-semibold">
-            {creator?.firstName + " " + creator?.lastName?.at(0) + "."}
+          <p className="text-[13px] text-dark-1 font-semibold">
+            {formatCurrency(row?.original?.tour?.price)}
           </p>
         );
       },
+    },
+    {
+      accessorKey: "group",
+      header: "Group",
+      cell: ({ row }) => <p>{row?.original?.totalPeople} People</p>,
     },
     {
       accessorKey: "status",
@@ -175,48 +152,6 @@ const ListingsTable = ({ data }: { data: Props[] }) => {
         </Badge>
       ),
     },
-
-    {
-      id: "action",
-      cell: ({ row }) => {
-        const status = row?.original?.status;
-        const id = row?.original?.id;
-
-        return (
-          <div>
-            <DropdownMenu modal={false}>
-              <DropdownMenuTrigger asChild>
-                <Button size={"icon"} variant={"ghost"}>
-                  <EllipsisVertical className="size-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {status !== "approved" && (
-                  <DropdownMenuItem asChild>
-                    <button
-                      className="w-full"
-                      onClick={() => handleStatusUpdate("approved", id)}
-                    >
-                      <CircleCheckBig /> Approve
-                    </button>
-                  </DropdownMenuItem>
-                )}
-                {status !== "rejected" && (
-                  <DropdownMenuItem asChild>
-                    <button
-                      className="w-full"
-                      onClick={() => handleStatusUpdate("rejected", id)}
-                    >
-                      <X /> Decline
-                    </button>
-                  </DropdownMenuItem>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        );
-      },
-    },
   ];
 
   const table = useReactTable({
@@ -232,7 +167,6 @@ const ListingsTable = ({ data }: { data: Props[] }) => {
 
   return (
     <>
-      {isPending && <LinearProgress />}
       <div className="overflow-x-auto rounded-md border border-border text-sm text-navy">
         <Table className="min-w-[860px]">
           <TableHeader>
@@ -287,4 +221,4 @@ const ListingsTable = ({ data }: { data: Props[] }) => {
   );
 };
 
-export default ListingsTable;
+export default BookingsTable;
