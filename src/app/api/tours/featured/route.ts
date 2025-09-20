@@ -39,6 +39,7 @@ export const GET = async () => {
       }
     );
   } catch (error) {
+
     return NextResponse.json(
       {
         success: false,
