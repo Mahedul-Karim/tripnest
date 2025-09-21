@@ -175,16 +175,61 @@ const adminAllEarnings = async () => {
       },
     });
 
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const currentMonth = new Date().getMonth();
+
+    const chartData = [];
+
+    for (let i = currentMonth - 5; i <= month.length; i++) {
+      if (i < 0) {
+        i = month.length + i;
+      }
+
+      if (i === month.length) {
+        i = 0;
+      }
+
+      if (chartData.length === 6) {
+        break;
+      }
+
+      const chartObject = {
+        month: month[i],
+        sales: Math.round(Math.random() * 300),
+      };
+
+      chartData.push(chartObject);
+    }
+
     return {
+      success: true,
       totalEarnings,
       salesThisMonth: Math.round(Math.random() * 500),
       withdraws,
+      chartData,
     };
   } catch (err: any) {
     return {
+      success: false,
       totalEarnings: 0,
       salesThisMonth: 0,
       withdraws: [],
+      chartData: [],
+      message: err.message,
     };
   }
 };
