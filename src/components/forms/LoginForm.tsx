@@ -91,10 +91,11 @@ const LoginForm = () => {
       const { user } = await signInWithPopup(auth, googleProvider);
 
       const email = user?.providerData?.[0]?.email;
-      const displayName = user.providerData[0].displayName;
+      const displayName = user.providerData[0].displayName?.split(" ");
 
       const firstName = displayName?.at(0);
-      const lastName = displayName?.at(-1);
+      const lastName =
+        displayName!.length > 1 ? displayName?.at(-1) : firstName;
 
       const token = await user.getIdToken(true);
 

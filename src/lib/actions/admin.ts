@@ -277,10 +277,13 @@ const allUsers = async (role: Role) => {
     });
 
     return {
+      success: true,
       users,
     };
   } catch (err: any) {
     return {
+      success: false,
+      message: err.message,
       users: [],
     };
   }
