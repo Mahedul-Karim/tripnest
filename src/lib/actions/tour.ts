@@ -51,7 +51,10 @@ const getSingleTour = async (id: string) => {
     });
 
     if (!tour) {
-      return null;
+      return {
+        success: false,
+        message: "No tour has been found for the provided id",
+      };
     }
 
     const overall = await prisma.review.aggregate({
@@ -68,7 +71,7 @@ const getSingleTour = async (id: string) => {
       },
     });
 
-    return { tour, overall: overall._avg };
+    return { success: true, tour, overall: overall._avg };
   } catch (err) {
     return {
       success: false,
