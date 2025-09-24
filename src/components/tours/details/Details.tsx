@@ -15,6 +15,7 @@ import { House, Loader } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import Heading from "./Heading";
+import Gallery from "./Gallery";
 
 const Details = ({ tourName, id }: { tourName: string; id: string }) => {
   const { data, isPending, error } = useQuery({
@@ -45,6 +46,12 @@ const Details = ({ tourName, id }: { tourName: string; id: string }) => {
         <Empty text={error.message} />
       </div>
     );
+  }
+
+  if (!isPending && !error && !tour) {
+    <div className="grid place-items-center">
+      <Empty text={"No tours found"} />
+    </div>;
   }
 
   return (
@@ -79,6 +86,7 @@ const Details = ({ tourName, id }: { tourName: string; id: string }) => {
         location={tour!.location}
         totalReviews={tour!.reviews?.length}
       />
+      <Gallery gallery={tour!.gallery} />
     </>
   );
 };
