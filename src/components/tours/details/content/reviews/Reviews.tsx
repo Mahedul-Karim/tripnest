@@ -10,6 +10,7 @@ import {
   BedSingle,
   Headphones,
 } from "lucide-react";
+import UserReviews from "./UserReviews";
 
 interface Props {
   reviews: {
@@ -89,6 +90,10 @@ const Reviews: React.FC<Props> = ({ reviews = [], totalRatings, overall }) => {
             length={reviewLength}
           />
         </div>
+      </div>
+      <div className="mt-8 flex flex-col gap-6">
+        {reviews?.length > 0 &&
+          reviews?.map((rev, i) => <UserReviews key={i} review={rev} />)}
       </div>
     </div>
   );
