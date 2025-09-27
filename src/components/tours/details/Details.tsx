@@ -16,6 +16,7 @@ import Link from "next/link";
 import React from "react";
 import Heading from "./Heading";
 import Gallery from "./Gallery";
+import Main from "./content/Main";
 
 const Details = ({ tourName, id }: { tourName: string; id: string }) => {
   const { data, isPending, error } = useQuery({
@@ -87,6 +88,20 @@ const Details = ({ tourName, id }: { tourName: string; id: string }) => {
         totalReviews={tour!.reviews?.length}
       />
       <Gallery gallery={tour!.gallery} />
+      <Main
+        id={id}
+        totalRatings={tour!.totalRatings}
+        duration={tour!.duration}
+        groupSize={tour!.groupSize}
+        overview={tour!.overview}
+        highlight={tour!.highlight}
+        includes={tour!.includes}
+        itinerarys={tour!.itinerarys}
+        price={tour!.price}
+        reviews={tour!.reviews}
+        creatorId={tour!.creatorId}
+        overall={overall}
+      />
     </>
   );
 };
