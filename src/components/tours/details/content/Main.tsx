@@ -5,6 +5,7 @@ import Overview from "./Overview";
 import Includes from "./Includes";
 import Itinerary from "./itinerary/Itinerary";
 import Reviews from "./reviews/Reviews";
+import Sidebar from "./sidebar/Sidebar";
 
 interface Props {
   id: string;
@@ -66,7 +67,13 @@ const Main: React.FC<Props> = ({
           overall={overall}
         />
       </section>
-      <section></section>
+      <Sidebar
+        id={id}
+        price={price}
+        duration={duration}
+        groupSize={groupSize}
+        creatorId={creatorId}
+      />
     </main>
   );
 };
