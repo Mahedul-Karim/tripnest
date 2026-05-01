@@ -8,6 +8,7 @@ import React, {
   Dispatch,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -26,6 +27,8 @@ interface ContextType {
   setToken: Dispatch<SetStateAction<string>>;
   tourToEdit: Tour | null;
   setTourToEdit: Dispatch<SetStateAction<Tour | null>>;
+  darkMode: boolean;
+  setDarkMode: Dispatch<SetStateAction<boolean>>;
 }
 
 const Context = createContext<ContextType>({
@@ -39,6 +42,8 @@ const Context = createContext<ContextType>({
   setTourToEdit: () => {},
   isLoading: true,
   setIsLoading: () => {},
+  darkMode: false,
+  setDarkMode: () => {},
 });
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
@@ -55,6 +60,16 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 
   const [token, setToken] = useState<string>(userToken);
 
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
   return (
     <Context
       value={{
@@ -68,6 +83,8 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
         setTourToEdit,
         isLoading,
         setIsLoading,
+        darkMode,
+        setDarkMode,
       }}
     >
       <QueryProvider>

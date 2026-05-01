@@ -74,7 +74,7 @@ const Testimonials = () => {
                     )} transition-all duration-300`}
                   >
                     <Card
-                      className="border-border shadow-none bg-white py-4"
+                      className="border-border shadow-none bg-foreground py-4"
                     >
                       <CardContent className="flex px-4 flex-col gap-4">
                         <p className="font-medium text-muted italic">
@@ -101,19 +101,19 @@ const Testimonials = () => {
               ))}
             </CarouselContent>
             <section className="l-container relative flex items-center justify-center gap-4">
-              <CarouselPrevious className="static translate-y-0 bg-secondary text-white hover:text-white border-none hover:bg-secondary" />
+              <CarouselPrevious className="static translate-y-0 bg-secondary text-white hover:text-white border-none hover:bg-secondary dark:bg-secondary dark:hover:bg-secondary" />
               <div className="flex items-center gap-1 xs:gap-2">
                 {scrollSnaps?.map((_, i) => (
                   <Button
                     key={i}
                     onClick={() => emblaApi?.scrollTo(i)}
                     className={`size-2.5 px-0 py-0 rounded-full ${
-                      i === selectedIndex ? "bg-secondary" : "bg-secondary/15"
+                      i === selectedIndex ? "bg-secondary" : "bg-secondary/15 dark:bg-secondary/30"
                     } hover:bg-secondary`}
                   />
                 ))}
               </div>
-              <CarouselNext className="static translate-y-0 bg-secondary text-white hover:text-white border-none hover:bg-secondary" />
+              <CarouselNext className="static translate-y-0 bg-secondary text-white hover:text-white border-none hover:bg-secondary dark:bg-secondary dark:hover:bg-secondary" />
             </section>
           </Carousel>
         </div>

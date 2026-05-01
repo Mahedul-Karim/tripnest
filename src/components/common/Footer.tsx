@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t border-solid border-border">
+    <footer className="bg-foreground border-t border-solid border-border">
       <section className="py-10 grid grid-cols-2 gap-6 sm:gap-0 sm:grid-cols-4 place-items-center l-container">
         <div>
           <Logo />

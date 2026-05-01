@@ -8,9 +8,12 @@ import Nav from "./Nav";
 import NavAction from "./NavAction";
 import MobileNav from "./MobileNav";
 import UserAvatar from "../common/UserAvatar";
+import { Button } from "../ui/button";
 
 const Header = () => {
   const pathname = usePathname();
+
+  const { setDarkMode } = useCtx();
 
   const headerRef = useRef<HTMLDivElement | null>(null);
 
@@ -33,7 +36,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 h-[70px] z-[2] w-full ${
-        pathname !== "/" && "bg-white shadow-sm"
+        pathname !== "/" && "bg-foreground shadow-sm border-b border-border"
       }`}
       ref={headerRef}
     >
@@ -44,6 +47,9 @@ const Header = () => {
             <Nav />
           </div>
           <div className="flex items-center gap-4">
+            <Button onClick={() => setDarkMode((prev) => !prev)}>
+              Dark Mode
+            </Button>
             {!user && (
               <div className="hidden md:block">
                 <NavAction />

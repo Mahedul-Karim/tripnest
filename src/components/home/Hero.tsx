@@ -1,10 +1,20 @@
+"use client";
+
+import { useCtx } from "@/context/Context";
 import Image from "next/image";
 import React from "react";
 
 const Hero = () => {
+  const { darkMode } = useCtx();
+
   return (
     <div
-      className={`min-h-screen bg-[url("/assets/bg.webp")] bg-no-repeat bg-cover`}
+      className={`min-h-screen bg-no-repeat bg-cover`}
+      style={{
+        backgroundImage: darkMode
+          ? "radial-gradient(ellipse at right,rgba(239, 122, 70, 0.35),transparent 72%)"
+          : "url('/assets/bg.webp')",
+      }}
     >
       <section className="l-container pb-20 pt-28 sm:pt-36 gap-6 sm:gap-0 grid sm:grid-cols-[0.8fr_1fr]">
         <div className="flex flex-col  justify-center">

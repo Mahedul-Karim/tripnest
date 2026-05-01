@@ -10,7 +10,7 @@ interface Props {
 const ListItem: React.FC<Props> = ({ Icon, heading, text }) => {
   return (
     <div className="flex gap-3">
-      <div className="size-[50px] xs:size-[84px] grid place-items-center bg-white border border-solid border-border rounded-full shrink-0">
+      <div className="size-[50px] xs:size-[84px] grid place-items-center bg-foreground border border-solid border-border rounded-full shrink-0">
         <Icon className="xs:size-8 stroke-secondary" />
       </div>
       <div className="flex flex-col gap-1">
