@@ -63,7 +63,7 @@ const PasswordForm = () => {
             render={({ field }) => (
               <FormItem className="mt-6">
                 <FloatingInput
-                  labelBg="bg-white"
+                  
                   label={"Current Password"}
                   text={getValues("currentPassword")}
                   type="password"
@@ -82,7 +82,7 @@ const PasswordForm = () => {
               render={({ field }) => (
                 <FormItem className="mt-6">
                   <FloatingInput
-                    labelBg="bg-white"
+                    
                     label={"New Password"}
                     text={getValues("newPassword")}
                     type="password"
@@ -100,7 +100,7 @@ const PasswordForm = () => {
               render={({ field }) => (
                 <FormItem className="mt-6">
                   <FloatingInput
-                    labelBg="bg-white"
+                    
                     label={"Confirm Password"}
                     text={getValues("confirmPassword")}
                     type="password"

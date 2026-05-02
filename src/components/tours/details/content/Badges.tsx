@@ -10,7 +10,7 @@ interface Props {
 const Badges: React.FC<Props> = ({ Icon, label, details }) => {
   return (
     <div className="flex items-center gap-2">
-      <div className="bg-white border border-solid border-border rounded-lg p-2 text-navy">
+      <div className="bg-foreground border border-solid border-border rounded-lg p-2 text-navy">
         <Icon className="size-5 md:size-6" />
       </div>
       <div className="flex flex-col gap-1">

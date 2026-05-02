@@ -91,7 +91,7 @@ const ListingsTable = ({ data }: { data: Props[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent dark:hover:bg-transparent dark:hover:text-text has-[>svg]:px-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Name <ArrowUpDown />
@@ -118,14 +118,14 @@ const ListingsTable = ({ data }: { data: Props[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Price <ArrowUpDown />
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {formatCurrency(row?.original?.price)}
         </p>
       ),
@@ -135,14 +135,14 @@ const ListingsTable = ({ data }: { data: Props[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Created At <ArrowUpDown />
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {formatDate(new Date(row?.original?.createdAt))}
         </p>
       ),
@@ -186,7 +186,7 @@ const ListingsTable = ({ data }: { data: Props[] }) => {
           <div>
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
-                <Button size={"icon"} variant={"ghost"}>
+                <Button size={"icon"} variant={"ghost"} className="dark:hover:bg-muted/5 dark:hover:text-white">
                   <EllipsisVertical className="size-5" />
                 </Button>
               </DropdownMenuTrigger>

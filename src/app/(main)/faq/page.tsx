@@ -15,7 +15,7 @@ const Page = () => {
       <div className="flex flex-col gap-4">
         <Accordion type="single" collapsible className="space-y-4">
           {FAQS?.map((faq, i) => (
-            <AccordionItem value={faq.question} key={i} className="border border-solid border-border bg-white px-4 rounded-lg">
+            <AccordionItem value={faq.question} key={i} className="border border-solid border-border bg-foreground px-4 rounded-lg">
               <AccordionTrigger className="text-navy hover:no-underline text-base font-semibold">
                 {faq.question}
               </AccordionTrigger>

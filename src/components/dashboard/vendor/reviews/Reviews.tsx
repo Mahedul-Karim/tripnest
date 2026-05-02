@@ -66,7 +66,7 @@ const Reviews: React.FC<Props> = ({ isAdmin = false }) => {
 
   if (error) {
     return (
-      <div className="bg-white p-4 border border-border rounded-md">
+      <div className="bg-card p-4 border border-border rounded-md">
         <Empty text={error.message} />
       </div>
     );
@@ -86,10 +86,10 @@ const Reviews: React.FC<Props> = ({ isAdmin = false }) => {
           value={allReviews?.length}
         />
       </div>
-      <div className="bg-white rounded-md border border-solid border-border p-4 mt-6">
+      <div className="bg-card rounded-md border border-solid border-border p-4 mt-6">
         <ReviewsChart chartData={chartData} />
       </div>
-      <div className="bg-white rounded-md border border-solid border-border p-4 mt-6">
+      <div className="bg-card rounded-md border border-solid border-border p-4 mt-6">
         <SectionHeading>Review Matrics</SectionHeading>
         <div className="mt-6">
           <div className="py-4 border-t border-b border-dashed border-border flex flex-col gap-3">

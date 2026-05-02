@@ -124,7 +124,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormControl>
                     <FloatingInput
-                      labelBg="bg-white"
+                      
                       label={"First Name"}
                       text={getValues("firstName")}
                       error={errors?.firstName?.message || ""}
@@ -144,7 +144,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormControl>
                     <FloatingInput
-                      labelBg="bg-white"
+                      
                       label={"Last Name"}
                       text={getValues("lastName")}
                       error={errors?.lastName?.message || ""}
@@ -164,7 +164,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormControl>
                     <FloatingInput
-                      labelBg="bg-white"
+                      
                       label={"Email"}
                       text={getValues("email")}
                       error={errors?.email?.message || ""}
@@ -184,7 +184,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormControl>
                     <FloatingInput
-                      labelBg="bg-white"
+                      
                       label={"Password"}
                       text={getValues("password")}
                       error={errors?.password?.message || ""}
@@ -204,7 +204,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormControl>
                     <FloatingInput
-                      labelBg="bg-white"
+                      
                       label={"Confirm Password"}
                       text={getValues("confirmPassword")}
                       error={errors?.confirmPassword?.message || ""}

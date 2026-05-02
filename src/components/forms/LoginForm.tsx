@@ -153,7 +153,6 @@ const LoginForm = () => {
                 <FormItem>
                   <FormControl>
                     <FloatingInput
-                      labelBg="bg-white"
                       label={"Email Address"}
                       text={getValues("email")}
                       error={errors?.email?.message || ""}
@@ -173,7 +172,6 @@ const LoginForm = () => {
                 <FormItem>
                   <FormControl>
                     <FloatingInput
-                      labelBg="bg-white"
                       label={"Password"}
                       text={getValues("password")}
                       error={errors?.password?.message || ""}

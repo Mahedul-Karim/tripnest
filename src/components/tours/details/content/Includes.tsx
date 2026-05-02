@@ -14,7 +14,7 @@ const Includes: React.FC<Props> = ({ includes }) => {
         <div className="flex flex-col gap-4">
           {includes?.map((inc, i) => (
             <div className="flex gap-2" key={i}>
-              <span className="size-[20px] flex items-center justify-center bg-green-100 text-green-500 rounded-full shrink-0">
+              <span className="size-[20px] flex items-center justify-center bg-green-100 dark:bg-green-50/20 text-green-500 rounded-full shrink-0">
                 <Check className="size-4" />
               </span>
               <p className="text-navy text-sm">{inc}</p>

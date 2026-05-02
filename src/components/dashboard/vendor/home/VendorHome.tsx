@@ -51,7 +51,7 @@ const VendorHome = () => {
 
   if (error || !data?.data) {
     return (
-      <div className="p-4 grid place-items-center bg-white rounded-2xl">
+      <div className="p-4 grid place-items-center bg-card rounded-2xl">
         <Empty text={error?.message} />
       </div>
     );
@@ -82,7 +82,7 @@ const VendorHome = () => {
         />
       </div>
       <div className="grid md:grid-cols-2 gap-4 mt-6">
-        <div className="bg-white rounded-md border border-solid border-border p-4 min-w-0 overflow-hidden">
+        <div className="bg-card rounded-md border border-solid border-border p-4 min-w-0 overflow-hidden">
           <BookingChart
             chartData={data?.chartData}
             chartConfig={chartConfig}
@@ -90,11 +90,11 @@ const VendorHome = () => {
             title="Booking Stats"
           />
         </div>
-        <div className="bg-white rounded-md border border-solid border-border p-4 min-w-0 overflow-hidden">
+        <div className="bg-card rounded-md border border-solid border-border p-4 min-w-0 overflow-hidden">
           <BookingPie />
         </div>
       </div>
-      <div className="mt-6 p-4 bg-white rounded-md border border-solid border-border">
+      <div className="mt-6 p-4 bg-card rounded-md border border-solid border-border">
         <SectionHeading>Viewed</SectionHeading>
         <VisitorsBar
           dataKey1="visited"
@@ -103,7 +103,7 @@ const VendorHome = () => {
           chartConfig={chartVisitorConfig}
         />
       </div>
-      <div className="mt-6 p-4 bg-white rounded-md border border-solid border-border">
+      <div className="mt-6 p-4 bg-card rounded-md border border-solid border-border">
         <SectionHeading>Recent Bookings</SectionHeading>
         <div className="mt-6">
           <AllBookings />

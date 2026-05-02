@@ -31,7 +31,7 @@ const AllListings = () => {
 
   if (!isPending && error) {
     return (
-      <div className="bg-white p-4 rounded-md border border-border mt-6">
+      <div className="bg-card p-4 rounded-md border border-border mt-6">
         <Empty text={error.message} />
       </div>
     );

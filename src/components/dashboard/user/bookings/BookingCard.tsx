@@ -161,7 +161,7 @@ const BookingCard: React.FC<Props> = ({
               Tour Starts At: {formatDate(new Date(startDate))}
             </p>
           </div>
-          <div className="flex flex-col gap-1 justify-center text-dark-1 text-xs xs:text-sm lg:text-base">
+          <div className="flex flex-col gap-1 justify-center text-text text-xs xs:text-sm lg:text-base">
             <p className="flex items-center justify-between sm:justify-normal gap-0 sm:gap-2 text-sm text-muted">
               Status:
               <Badge

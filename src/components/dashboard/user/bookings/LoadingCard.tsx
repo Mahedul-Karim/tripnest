@@ -12,7 +12,7 @@ const LoadingCard = () => {
         <Skeleton className="h-[20px]" />
         <Skeleton className="h-[20px]" />
       </div>
-      <div className="hidden sm:flex flex-col gap-1 justify-center text-dark-1 text-xs xs:text-sm lg:text-base">
+      <div className="hidden sm:flex flex-col gap-1 justify-center text-text text-xs xs:text-sm lg:text-base">
         <Skeleton className="h-[24px]" />
         <Skeleton className="h-[24px]" />
         <Skeleton className="h-[24px]" />

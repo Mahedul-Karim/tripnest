@@ -45,7 +45,7 @@ const Earnings = () => {
 
   if (!isPending && error) {
     return (
-      <div className="bg-white p-4 rounded-md border border-border">
+      <div className="bg-card p-4 rounded-md border border-border">
         <Empty text={error.message} />
       </div>
     );
@@ -65,10 +65,10 @@ const Earnings = () => {
           value={formatCurrency(salesThisMonth)}
         />
       </div>
-      <div className="bg-white rounded-md border border-solid border-border p-4 mt-6">
+      <div className="bg-card rounded-md border border-solid border-border p-4 mt-6">
         <SalesChart chartData={chartData} />
       </div>
-      <div className="p-4 bg-white border-border border border-solid rounded-md mt-6">
+      <div className="p-4 bg-card border-border border border-solid rounded-md mt-6">
         <SectionHeading>Withdraw Request&apos;s</SectionHeading>
         <div className="mt-6">
           {withdraws.length === 0 ? (

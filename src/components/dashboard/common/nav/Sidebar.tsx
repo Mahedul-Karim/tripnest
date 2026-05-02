@@ -13,7 +13,7 @@ interface Props {
 
 const Sidebar: React.FC<Props> = ({ navItems,onClick }) => {
   return (
-    <div className="bg-white border-r border-solid border-border p-6 w-[250px] xs:w-[270px] md:w-full h-screen md:h-full overflow-auto showScrollbar">
+    <div className="bg-card border-r border-solid border-border p-6 w-[250px] xs:w-[270px] md:w-full h-screen md:h-full overflow-auto showScrollbar">
       <div className="flex items-center justify-center">
         <Logo />
       </div>

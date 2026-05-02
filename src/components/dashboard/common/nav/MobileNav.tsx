@@ -26,7 +26,7 @@ const MobileNav: React.FC<Props> = ({ isAdmin }) => {
           <Hamburger open={open} setOpen={setOpen} />
         <SheetContent
           side="right"
-          className="bg-white border-border"
+          className="bg-foreground border-border"
         >
           <SheetHeader className="p-0">
             <SheetTitle className="sr-only">

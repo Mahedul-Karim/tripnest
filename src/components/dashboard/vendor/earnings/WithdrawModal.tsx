@@ -123,7 +123,7 @@ const WithdrawModal: React.FC<Props> = ({
             <>
               {" "}
               <div className="flex items-center justify-between">
-                <div className="flex flex-col gap-1 text-sm text-dark-1 sm:text-base">
+                <div className="flex flex-col gap-1 text-sm text-text sm:text-base">
                   <p className="text-muted">
                     Account Number:{" "}
                     <span className="font-medium text-navy">

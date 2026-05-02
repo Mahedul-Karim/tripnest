@@ -140,7 +140,7 @@ const ListingsForm: React.FC<Props> = ({ isEditing = false }) => {
       {isSubmitting && <LinearProgress />}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="bg-white border border-solid border-border rounded-xl p-4 flex flex-col gap-3">
+          <div className="bg-card border border-solid border-border rounded-xl p-4 flex flex-col gap-3">
             <h3 className="text-lg text-navy font-medium">Content</h3>
             <ContentForm
               form={form}
@@ -150,7 +150,7 @@ const ListingsForm: React.FC<Props> = ({ isEditing = false }) => {
               setValue={setValue}
             />
           </div>
-          <div className="bg-white border border-solid border-border rounded-xl p-4 flex flex-col gap-3 mt-8">
+          <div className="bg-card border border-solid border-border rounded-xl p-4 flex flex-col gap-3 mt-8">
             <h3 className="text-lg text-navy font-medium">Gallery</h3>
             <ImageAndItinerary
               form={form}
@@ -159,7 +159,7 @@ const ListingsForm: React.FC<Props> = ({ isEditing = false }) => {
               isEditing={isEditing}
             />
           </div>
-          <div className="bg-white border border-solid border-border rounded-xl p-4 flex flex-col gap-3 mt-8">
+          <div className="bg-card border border-solid border-border rounded-xl p-4 flex flex-col gap-3 mt-8">
             <h3 className="text-lg text-navy font-medium">Itinerary</h3>
             <Itinerarys
               form={form}
@@ -167,7 +167,7 @@ const ListingsForm: React.FC<Props> = ({ isEditing = false }) => {
               setValue={setValue}
             />
           </div>
-          <div className="bg-white border border-solid border-border rounded-xl p-4 flex flex-col gap-3 mt-8">
+          <div className="bg-card border border-solid border-border rounded-xl p-4 flex flex-col gap-3 mt-8">
             <h3 className="text-lg text-navy font-medium">Includes</h3>
             <Includes
               form={form}

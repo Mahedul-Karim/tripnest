@@ -5,7 +5,7 @@ import React from "react";
 const Page = () => {
   return (
     <>
-      <div className="p-4 bg-white border-border border border-solid rounded-md">
+      <div className="p-4 bg-card border-border border border-solid rounded-md">
         <Title>All Bookings</Title>
         <div className="mt-6">
           <AllBookings />

@@ -9,11 +9,13 @@ import NavAction from "./NavAction";
 import MobileNav from "./MobileNav";
 import UserAvatar from "../common/UserAvatar";
 import { Button } from "../ui/button";
+import DarkMode from "../dashboard/common/DarkMode";
+
 
 const Header = () => {
   const pathname = usePathname();
 
-  const { setDarkMode } = useCtx();
+  
 
   const headerRef = useRef<HTMLDivElement | null>(null);
 
@@ -47,9 +49,7 @@ const Header = () => {
             <Nav />
           </div>
           <div className="flex items-center gap-4">
-            <Button onClick={() => setDarkMode((prev) => !prev)}>
-              Dark Mode
-            </Button>
+            <DarkMode />
             {!user && (
               <div className="hidden md:block">
                 <NavAction />

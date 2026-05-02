@@ -82,7 +82,7 @@ const WithdrawTable = ({ data }: { data: Withdraw[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Name <ArrowUpDown />
@@ -99,14 +99,14 @@ const WithdrawTable = ({ data }: { data: Withdraw[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Amount <ArrowUpDown />
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {formatCurrency(row?.original?.amount)}
         </p>
       ),
@@ -116,7 +116,7 @@ const WithdrawTable = ({ data }: { data: Withdraw[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Requested At <ArrowUpDown />

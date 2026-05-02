@@ -13,7 +13,7 @@ const ReviewBar: React.FC<Props> = ({ totalReviews, label, value }) => {
       <p className="flex items-center gap-1 shrink-0">
         <span>{label}</span> <Star className="size-4" />
       </p>
-      <div className="h-2.5 xs:h-3 rounded-md bg-primary-foreground relative overflow-clip  w-full xs:w-[60%] md:w-[40%]">
+      <div className="h-2.5 xs:h-3 rounded-md bg-primary-foreground dark:bg-muted relative overflow-clip  w-full xs:w-[60%] md:w-[40%]">
         <div
           className="absolute left-0 top-0 h-full bg-yellow-400 rounded-md"
           style={{

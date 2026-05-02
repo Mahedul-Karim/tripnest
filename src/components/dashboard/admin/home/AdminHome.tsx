@@ -80,7 +80,7 @@ const AdminHome = () => {
 
   if (!isPending && error) {
     return (
-      <div className="bg-white p-4 rounded-md border border-border">
+      <div className="bg-card p-4 rounded-md border border-border">
         <Empty text={error.message} />
       </div>
     );
@@ -106,7 +106,7 @@ const AdminHome = () => {
           value={formatCurrency(totalEarnings)}
         />
       </div>
-      <div className="bg-white rounded-md border border-solid border-border p-4 mt-6">
+      <div className="bg-card rounded-md border border-solid border-border p-4 mt-6">
         <BookingChart
           chartData={chartData}
           chartConfig={chartConfig}
@@ -114,7 +114,7 @@ const AdminHome = () => {
           title="User joined"
         />
       </div>
-      <div className="mt-6 p-4 bg-white rounded-md border border-solid border-border">
+      <div className="mt-6 p-4 bg-card rounded-md border border-solid border-border">
         <SectionHeading>Customers</SectionHeading>
         <VisitorsBar
           dataKey1="newCustomers"

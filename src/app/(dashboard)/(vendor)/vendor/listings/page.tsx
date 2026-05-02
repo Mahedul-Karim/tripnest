@@ -6,7 +6,7 @@ import React from "react";
 const Page = () => {
   return (
     <>
-      <div className="bg-white border border-border p-4 rounded-md">
+      <div className="bg-foreground border border-border p-4 rounded-md">
         <div className="flex items-center justify-between">
           <Title>Listings</Title>
           <NewListings />

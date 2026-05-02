@@ -129,7 +129,7 @@ const Calendar: React.FC<Props> = ({ startDate, setStartDate }) => {
             <div key={i}>
               <button
                 type="button"
-                className={`mb-4 disabled:text-gray-400 disabled:hover:bg-transparent cursor-pointer disabled:cursor-auto hover:bg-primary hover:text-white hover:transition-all hover:duration-300 w-8 h-8 rounded-full text-xs xs:text-sm ${
+                className={`mb-4 text-text disabled:text-gray-400 disabled:hover:bg-transparent cursor-pointer disabled:cursor-auto hover:bg-primary hover:text-white hover:transition-all hover:duration-300 w-8 h-8 rounded-full text-xs xs:text-sm ${
                   date.date === +selectedDate.getDate() &&
                   !isDisabled &&
                   selectedDate.getMonth() === currentMonth &&

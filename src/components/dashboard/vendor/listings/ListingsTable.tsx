@@ -80,7 +80,7 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {formatCurrency(row?.original?.price)}
         </p>
       ),
@@ -97,7 +97,7 @@ const ListingsTable = ({ tours }: { tours: Tour[] }) => {
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {formatDate(new Date(row?.original?.createdAt))}
         </p>
       ),

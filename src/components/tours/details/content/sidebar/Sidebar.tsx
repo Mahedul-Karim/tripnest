@@ -74,7 +74,7 @@ const Sidebar: React.FC<Props> = ({
 
   return (
     <>
-      <section className="bg-white border border-solid border-border rounded-lg h-max px-4 py-8">
+      <section className="bg-foreground border border-solid border-border rounded-lg h-max px-4 py-8">
         <div className="flex gap-2 items-center text-navy">
           <span className="text-xs">From</span>
           <p className="font-medium text-base xs:text-lg">

@@ -59,7 +59,7 @@ const Earnings = () => {
           value={formatCurrency(data?.data?.withdrawPending || 0)}
         />
       </div>
-      <div className="bg-white rounded-md border border-solid border-border p-4 mt-6">
+      <div className="bg-card rounded-md border border-solid border-border p-4 mt-6">
         <SalesChart chartData={chartData} />
       </div>
     </>

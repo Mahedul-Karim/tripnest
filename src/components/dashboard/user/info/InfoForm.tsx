@@ -62,12 +62,11 @@ const InfoForm = () => {
   const onSubmit = async (values: UserInfo) => {
     if (!isDirty) {
       return toast.warning(
-        "Details must be edited before submitting the form!"
+        "Details must be edited before submitting the form!",
       );
     }
 
-    mutate({values})
-
+    mutate({ values });
   };
 
   return (
@@ -84,7 +83,6 @@ const InfoForm = () => {
               render={({ field }) => (
                 <FormItem className="mt-6">
                   <FloatingInput
-                    labelBg="bg-white"
                     label={"First Name"}
                     text={getValues("firstName")}
                     {...field}
@@ -102,7 +100,6 @@ const InfoForm = () => {
               render={({ field }) => (
                 <FormItem className="mt-6">
                   <FloatingInput
-                    labelBg="bg-white"
                     label={"Last Name"}
                     text={getValues("lastName")}
                     type="text"
@@ -122,7 +119,6 @@ const InfoForm = () => {
               render={({ field }) => (
                 <FormItem className="mt-6">
                   <FloatingInput
-                    labelBg="bg-white"
                     label={"Email"}
                     text={getValues("email")}
                     type="email"
@@ -140,7 +136,6 @@ const InfoForm = () => {
               render={({ field }) => (
                 <FormItem className="mt-6">
                   <FloatingInput
-                    labelBg="bg-white"
                     label={"Phone Number"}
                     text={getValues("phoneNumber")}
                     type="number"
@@ -161,7 +156,6 @@ const InfoForm = () => {
                 <FloatingTextarea
                   label={"Bio"}
                   text={getValues("bio")}
-                  labelBg="bg-white"
                   disabled={isPending}
                   {...field}
                 />

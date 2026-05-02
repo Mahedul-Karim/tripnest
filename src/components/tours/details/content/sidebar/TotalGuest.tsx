@@ -21,16 +21,16 @@ const TotalGuest: React.FC<Props> = ({
       </div>
       <div className="flex items-center gap-2">
         <button
-          className="size-[22px] xs:size-[25px] grid place-items-center border border-solid border-[#e7e6e6] text-[8px] xs:text-[10px] rounded-full cursor-pointer"
+          className="size-[22px] xs:size-[25px] grid place-items-center border border-solid border-[#e7e6e6] text-[8px] xs:text-[10px] rounded-full cursor-pointer text-text"
           onClick={onDecrese}
         >
           <Minus className="size-3" />
         </button>
-        <p className="size-[22px] xs:size-[25px] text-xs xs:text-sm flex items-center justify-center">
+        <p className="size-[22px] xs:size-[25px] text-xs xs:text-sm flex items-center justify-center text-text">
           {guestNumber}
         </p>
         <button
-          className="size-[22px] xs:size-[25px] grid place-items-center border border-solid border-[#e7e6e6] text-[8px] xs:text-[10px] rounded-full cursor-pointer"
+          className="size-[22px] xs:size-[25px] grid place-items-center border border-solid border-[#e7e6e6] text-[8px] xs:text-[10px] rounded-full cursor-pointer text-text"
           onClick={onIncrease}
         >
           <Plus className="size-3" />

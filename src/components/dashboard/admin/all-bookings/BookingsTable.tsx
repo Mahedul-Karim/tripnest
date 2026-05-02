@@ -56,7 +56,7 @@ const BookingsTable = ({ data }: { data: Props[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Tour <ArrowUpDown />
@@ -83,14 +83,14 @@ const BookingsTable = ({ data }: { data: Props[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Start Date <ArrowUpDown />
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {formatDate(new Date(row?.original?.startDate))}
         </p>
       ),
@@ -100,14 +100,14 @@ const BookingsTable = ({ data }: { data: Props[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           End Date <ArrowUpDown />
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {formatDate(new Date(row?.original?.endDate))}
         </p>
       ),
@@ -118,7 +118,7 @@ const BookingsTable = ({ data }: { data: Props[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Price <ArrowUpDown />
@@ -126,7 +126,7 @@ const BookingsTable = ({ data }: { data: Props[] }) => {
       ),
       cell: ({ row }) => {
         return (
-          <p className="text-[13px] text-dark-1 font-semibold">
+          <p className="text-[13px] text-text font-semibold">
             {formatCurrency(row?.original?.tour?.price)}
           </p>
         );

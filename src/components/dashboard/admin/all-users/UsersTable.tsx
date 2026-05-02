@@ -38,14 +38,14 @@ const UsersTable = ({ data }: { data: User[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Name <ArrowUpDown />
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {row?.original?.firstName + " " + row?.original?.lastName}
         </p>
       ),
@@ -55,7 +55,7 @@ const UsersTable = ({ data }: { data: User[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Email <ArrowUpDown />
@@ -72,14 +72,14 @@ const UsersTable = ({ data }: { data: User[] }) => {
       header: ({ column }) => (
         <Button
           variant={"ghost"}
-          className="font-semibold hover:bg-transparent has-[>svg]:px-0"
+          className="font-semibold hover:bg-transparent has-[>svg]:px-0 dark:hover:bg-transparent dark:hover:text-text"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Joined At <ArrowUpDown />
         </Button>
       ),
       cell: ({ row }) => (
-        <p className="text-[13px] text-dark-1 font-semibold">
+        <p className="text-[13px] text-text font-semibold">
           {formatDate(new Date(row?.original?.joinedAt))}
         </p>
       ),

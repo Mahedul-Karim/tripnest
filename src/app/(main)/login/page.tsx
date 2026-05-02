@@ -4,7 +4,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="py-32 xs:py-40 grid place-items-center bg-white">
+    <div className="py-32 xs:py-40 grid place-items-center bg-foreground">
       <section className="l-container">
         <div className="grid sm:grid-cols-2">
           <div className="flex items-center justify-center">

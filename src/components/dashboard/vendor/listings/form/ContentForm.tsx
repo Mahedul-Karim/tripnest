@@ -42,7 +42,7 @@ const ContentForm: React.FC<Props> = ({
         render={({ field }) => (
           <FormItem className="mt-6">
             <FloatingInput
-              labelBg="bg-white"
+              
               label={"Name"}
               text={getValues("tourName")}
               {...field}
@@ -78,7 +78,7 @@ const ContentForm: React.FC<Props> = ({
         render={({ field }) => (
           <FormItem className="mt-6">
             <FloatingInput
-              labelBg="bg-white"
+              
               label={"Location"}
               text={getValues("location")}
               {...field}
@@ -95,7 +95,7 @@ const ContentForm: React.FC<Props> = ({
         render={({ field }) => (
           <FormItem className="mt-6">
             <FloatingInput
-              labelBg="bg-white"
+              
               label={"Duration"}
               text={getValues("duration")}
               {...field}
@@ -111,7 +111,7 @@ const ContentForm: React.FC<Props> = ({
         render={({ field }) => (
           <FormItem className="mt-6">
             <FloatingInput
-              labelBg="bg-white"
+              
               label={"Price"}
               text={getValues("price")}
               {...field}
@@ -127,7 +127,7 @@ const ContentForm: React.FC<Props> = ({
         render={({ field }) => (
           <FormItem className="mt-6">
             <FloatingInput
-              labelBg="bg-white"
+              
               label={"Group Size"}
               text={getValues("groupSize")}
               {...field}
@@ -143,7 +143,7 @@ const ContentForm: React.FC<Props> = ({
         render={({ field }) => (
           <FormItem className="mt-6">
             <FloatingTextarea
-              labelBg="bg-white"
+              
               label={"Overview"}
               text={getValues("overview")}
               {...field}

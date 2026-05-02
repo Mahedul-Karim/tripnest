@@ -67,7 +67,7 @@ const Itinerarys: React.FC<Props> = ({
     <>
       <div className="flex flex-col gap-6">
         <FloatingInput
-          labelBg="bg-white"
+          
           label={"Title"}
           text={title}
           type="text"
@@ -75,7 +75,7 @@ const Itinerarys: React.FC<Props> = ({
           {...props}
         />
         <FloatingTextarea
-          labelBg="bg-white"
+          
           label={"Description"}
           text={description}
           disabled={isSubmitting}
@@ -104,7 +104,7 @@ const Itinerarys: React.FC<Props> = ({
             return (
               <div className="flex flex-col gap-6" key={i}>
                 <FloatingInput
-                  labelBg="bg-white"
+                  
                   label={"Title"}
                   text={iti.title}
                   type="text"
@@ -112,7 +112,7 @@ const Itinerarys: React.FC<Props> = ({
                   {...inputValue}
                 />
                 <FloatingTextarea
-                  labelBg="bg-white"
+                  
                   label={"Description"}
                   text={iti.description}
                   disabled

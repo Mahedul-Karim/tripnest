@@ -29,7 +29,7 @@ const CheckMark: React.FC<Props> = ({
         value={value}
         onCheckedChange={(val) => onChange(value, val)}
         checked={checked}
-        className={`cursor-pointer size-4.5 [&>svg]:size-4 rounded-full border-text/40 data-[state=checked]:bg-transparent data-[state=checked]:border-primary [&>svg]:stroke-primary`}
+        className={`cursor-pointer size-4.5 [&>svg]:size-4 rounded-full border-text/40 data-[state=checked]:bg-transparent dark:data-[state=checked]:bg-transparent data-[state=checked]:border-primary [&>svg]:stroke-primary`}
       />
       <Label htmlFor={`${value}-${index}`} className="font-normal text-text cursor-pointer">
         {!isRating ? label : <Ratings rating={Number(value)} size="size-4.5" />}
