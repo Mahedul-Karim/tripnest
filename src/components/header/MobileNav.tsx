@@ -29,7 +29,7 @@ const MobileNav = () => {
         <Hamburger open={open} setOpen={setOpen} />
         <SheetContent
           side="left"
-          className="bg-white border-border overflow-auto"
+          className="bg-card border-border overflow-auto"
         >
           <SheetHeader className="border-b border-border py-2 flex items-center justify-center">
             <SheetTitle className="sr-only">
