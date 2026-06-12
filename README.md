@@ -1,4 +1,4 @@
-TripNest is tour managing platfrom for users to have an excellent journey they have wanted accross the planet.
+TripNest is a full-featured tour management platform designed to help users plan, book, and experience seamless journeys across the globe. It connects users, vendors, and admins within a structured ecosystem that simplifies tour discovery, booking, and management.
 
 
 ## 🔗 Live URL
